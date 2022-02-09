@@ -8,7 +8,7 @@ public class Caluculos_con_math {
 		
 		double raiz = Math.sqrt(num);
 		
-		System.out.println("la raiz de : " + num + " es: " + raiz);
+		System.out.println("La raiz de : " + num + " es: " + raiz);
 		
 	}
 
