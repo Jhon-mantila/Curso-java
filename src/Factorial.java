@@ -5,7 +5,7 @@ public class Factorial {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		int resultado = 1;
+		Long resultado = 1L;
 		
 		int numero = Integer.parseInt(JOptionPane.showInputDialog("Introduce un numero:"));
 		
