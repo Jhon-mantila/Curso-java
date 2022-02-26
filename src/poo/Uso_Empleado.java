@@ -23,11 +23,13 @@ public class Uso_Empleado {
 		
 		//Creando un array de la clase
 		
-		Empleado[] misempleados = new Empleado[3];
+		Empleado[] misempleados = new Empleado[5];
 		
 		misempleados[0] = new Empleado("Juan Rojas", 2000000, 2019, 8, 17);
 		misempleados[1] = new Empleado("Laura", 1200000, 2019, 8, 17);
 		misempleados[2] = new Empleado("David", 1200000, 2021, 8, 17);
+		misempleados[3] = new Empleado("Zhoe");
+		misempleados[4] = new Empleado("Camilo");
 		
 		for (int i=0; i<misempleados.length; i++) {
 			
@@ -52,7 +54,7 @@ class Empleado {
 	private double sueldo;
 	
 	private Date altaContrato;
-	
+		
 	
 	public Empleado(String nom, double sue, int ano, int mes, int dia) {
 		
@@ -63,6 +65,12 @@ class Empleado {
 		GregorianCalendar calendario = new GregorianCalendar(ano, mes-1, dia);
 		
 		altaContrato = calendario.getTime();
+		
+	}
+	
+	public Empleado(String nom) {
+		// tmb hace referencia al otro contructor, en la misma clase
+		this(nom, 500000, 2022, 2, 26);
 		
 	}
 	
