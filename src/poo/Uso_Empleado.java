@@ -101,3 +101,30 @@ class Empleado {
 		
 	}
 }
+
+class Jefetura extends Empleado {
+
+	private double incentivo;
+	
+	public Jefetura(String nom, double sue, int ano, int mes, int dia ){	
+		
+		super(nom, sue, dia, dia, dia);
+		
+	}
+	
+	public void set_incentivo(double b) {
+		
+		incentivo = b;
+	}
+	
+	//Sobreescribir el metodo de la clase empleado
+	
+	public double get_sueldo() {
+		//llame al metodo de la clase padre
+		double sueldoJefe = super.get_sueldo();
+		
+		return sueldoJefe + incentivo;
+	}
+	
+	
+}
