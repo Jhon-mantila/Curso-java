@@ -8,6 +8,10 @@ public class Uso_Empleado {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		Jefatura jefe_RRHH = new Jefatura("Laura", 1200000, 2020, 8,15);
+		
+		jefe_RRHH.set_incentivo(400000);;
+		
 		Empleado empleado = new Empleado("Jhon Mantilla", 2000000, 2021, 8, 17);
 		Empleado empleado1 = new Empleado("Jessika Vallejo", 2100000, 2022, 8, 17);
 		Empleado empleado2 = new Empleado("Zhoe", 1200000, 2020, 8, 17);
@@ -23,13 +27,15 @@ public class Uso_Empleado {
 		
 		//Creando un array de la clase
 		
-		Empleado[] misempleados = new Empleado[5];
+		Empleado[] misempleados = new Empleado[7];
 		
 		misempleados[0] = new Empleado("Juan Rojas", 2000000, 2019, 8, 17);
 		misempleados[1] = new Empleado("Laura", 1200000, 2019, 8, 17);
 		misempleados[2] = new Empleado("David", 1200000, 2021, 8, 17);
 		misempleados[3] = new Empleado("Zhoe");
 		misempleados[4] = new Empleado("Camilo");
+		misempleados[5] = jefe_RRHH; // Polimorfismo en acción
+		misempleados[6] = new Jefatura("Daniel", 5000000, 2017, 04,12);
 		
 		for (int i=0; i<misempleados.length; i++) {
 			
@@ -38,7 +44,7 @@ public class Uso_Empleado {
 		}
 		
 		for (Empleado element: misempleados) {
-			
+														/*Enlazado dinamico con el metodo get_sueldo() diferencia entre clases cual debe llamar*/
 			System.out.println("Nombre: " + element.get_nombre() + " Sueldo: " + element.get_sueldo() + " Fecha:" + element.get_altaContrato());
 		}
 		
@@ -55,6 +61,9 @@ class Empleado {
 	
 	private Date altaContrato;
 		
+	private int id;
+	
+	private static int idSiguiente = 1;
 	
 	public Empleado(String nom, double sue, int ano, int mes, int dia) {
 		
@@ -65,6 +74,10 @@ class Empleado {
 		GregorianCalendar calendario = new GregorianCalendar(ano, mes-1, dia);
 		
 		altaContrato = calendario.getTime();
+		
+		id = idSiguiente;
+		
+		idSiguiente++;
 		
 	}
 	
@@ -77,7 +90,7 @@ class Empleado {
 	
 	public String get_nombre() {
 		
-		return nombre;
+		return nombre + " id: " + id;
 	}
 	
 	
@@ -102,11 +115,11 @@ class Empleado {
 	}
 }
 
-class Jefetura extends Empleado {
+class Jefatura extends Empleado {
 
 	private double incentivo;
 	
-	public Jefetura(String nom, double sue, int ano, int mes, int dia ){	
+	public Jefatura(String nom, double sue, int ano, int mes, int dia ){	
 		
 		super(nom, sue, dia, dia, dia);
 		
