@@ -29,6 +29,8 @@ public class Uso_Empleado {
 		
 		Empleado[] misempleados = new Empleado[7];
 		
+		//regla "es un" para la herencia
+		
 		misempleados[0] = new Empleado("Juan Rojas", 2000000, 2019, 8, 17);
 		misempleados[1] = new Empleado("Laura", 1200000, 2019, 8, 17);
 		misempleados[2] = new Empleado("David", 1200000, 2021, 8, 17);
@@ -36,6 +38,14 @@ public class Uso_Empleado {
 		misempleados[4] = new Empleado("Camilo");
 		misempleados[5] = jefe_RRHH; // Polimorfismo en acción
 		misempleados[6] = new Jefatura("Daniel", 5000000, 2017, 04,12);
+		//Casting o refundición en clases o metodos
+		
+		/*Castin ej double num1 = 1.2;
+		 * 				int num2 = (int) num1;*/
+		
+		Jefatura jefe_finanzas = (Jefatura) misempleados[6];
+		
+		jefe_finanzas.set_incentivo(500000);
 		
 		for (int i=0; i<misempleados.length; i++) {
 			
@@ -90,7 +100,7 @@ class Empleado {
 	
 	public String get_nombre() {
 		
-		return nombre + " id: " + id;
+		return " id: " + id + " "+ nombre ;
 	}
 	
 	
@@ -115,7 +125,9 @@ class Empleado {
 	}
 }
 
-class Jefatura extends Empleado {
+//clases final para que no herenden de ellas igual a los metodos pueden ser final para que no los herende
+
+final class Jefatura extends Empleado {
 
 	private double incentivo;
 	
@@ -141,3 +153,16 @@ class Jefatura extends Empleado {
 	
 	
 }
+
+/*class Director extends Jefatura{
+
+
+	public Director(String nom, double sue, int ano, int mes, int dia) {
+		super(nom, sue, ano, mes, dia);
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+
+}*/
