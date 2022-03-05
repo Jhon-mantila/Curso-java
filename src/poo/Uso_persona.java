@@ -10,8 +10,8 @@ public class Uso_persona {
 		
 		Persona[] lasPersonas = new Persona[2];
 		
-		lasPersonas[0] = new Empleado2("Jhon Edinson" , 200000, 2022,2,25);
-		lasPersonas[1] = new Alumno ("Jessika Karime", "Admin Negocios Internacionales");
+		lasPersonas[0] = new Empleado2("Jhon Edinson" , 200000, 2022,2,25); //Polimorfismo gracias a la regla del "es un " de la herencia
+		lasPersonas[1] = new Alumno ("Jessika Karime", "Admin Negocios Internacionales"); //Polimorfismo gracias a la regla del "es un " de la herencia
 		
 		for(Persona p: lasPersonas) {
 			
