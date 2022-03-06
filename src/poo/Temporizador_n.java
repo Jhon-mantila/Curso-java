@@ -1,5 +1,6 @@
 package poo;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
@@ -12,6 +13,8 @@ public class Temporizador_n {
 		// TODO Auto-generated method stub
 		
 		Hora oyente = new Hora();
+		
+		//ActionListener oyente = new Hora();
 		
 		Timer mitemporizador = new Timer(5000, oyente);
 					
@@ -28,9 +31,11 @@ class Hora implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		
-		Date  la_hora = new Date();
+		Date la_hora = new Date();
 		
 		System.out.println("te pongo la hora cada 5 sg: " + la_hora);
+		
+		Toolkit.getDefaultToolkit().beep();
 		
 	}
 }
