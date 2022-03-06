@@ -48,6 +48,9 @@ public class Uso_Empleado {
 		
 		jefe_finanzas.set_incentivo(500000);
 		
+		System.out.println("El Jefe: " + jefe_finanzas.get_nombre() + " de finanzas tiene un bonus de: " + jefe_finanzas.establece_bonus(1000000));
+		
+		System.out.println("El Empleado: " + misempleados[2].get_nombre() + "tiene un bonus de :" + misempleados[2].establece_bonus(500000));
 		
 		Empleado director_Comercial = new Jefatura("Sandra Arango", 20000, 2001, 03,04);
 		Comparable ejemplo = new Empleado("Wilson pra", 900000, 2021,04,06);
@@ -84,7 +87,7 @@ public class Uso_Empleado {
 
 }
 
-class Empleado implements Comparable{
+class Empleado implements Comparable, Trabajadores{
 	
 	private String nombre;
 	
@@ -169,6 +172,12 @@ class Empleado implements Comparable{
 		
 		return 0;
 	}
+
+	@Override
+	public double establece_bonus(double gratificacion) {
+		// TODO Auto-generated method stub
+		return gratificacion + Trabajadores.bonus_base;
+	}
 }
 
 //clases final para que no herenden de ellas igual a los metodos pueden ser final para que no los herende
@@ -201,6 +210,13 @@ final class Jefatura extends Empleado implements Jefes {
 	public String tomar_decisiones(String decision) {
 		// TODO Auto-generated method stub
 		return "Siguiente decisión: " + decision;
+	}
+	
+	public double establece_bonus(double gratificacion) {
+		
+		double prima = 500000;
+		
+		return Trabajadores.bonus_base + gratificacion + prima;
 	}
 	
 	
