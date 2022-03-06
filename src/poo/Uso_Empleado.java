@@ -48,6 +48,23 @@ public class Uso_Empleado {
 		
 		jefe_finanzas.set_incentivo(500000);
 		
+		
+		Empleado director_Comercial = new Jefatura("Sandra Arango", 20000, 2001, 03,04);
+		Comparable ejemplo = new Empleado("Wilson pra", 900000, 2021,04,06);
+		
+		
+		if (director_Comercial instanceof Empleado) {
+			
+			System.out.println("Es de tipo jefatura");
+		}
+		
+		if(ejemplo instanceof Comparable) {
+			
+			System.out.println("Implementa la interfaz comparable");
+		}
+		
+		System.out.println(jefe_finanzas.tomar_decisiones("Vamos a crear un semillero y se les dara un bono a los que lo dicten"));
+		
 		for (int i=0; i<misempleados.length; i++) {
 			
 			misempleados[i].subeSueldo(10);
@@ -156,7 +173,7 @@ class Empleado implements Comparable{
 
 //clases final para que no herenden de ellas igual a los metodos pueden ser final para que no los herende
 
-final class Jefatura extends Empleado {
+final class Jefatura extends Empleado implements Jefes {
 
 	private double incentivo;
 	
@@ -178,6 +195,12 @@ final class Jefatura extends Empleado {
 		double sueldoJefe = super.get_sueldo();
 		
 		return sueldoJefe + incentivo;
+	}
+
+	@Override
+	public String tomar_decisiones(String decision) {
+		// TODO Auto-generated method stub
+		return "Siguiente decisión: " + decision;
 	}
 	
 	
