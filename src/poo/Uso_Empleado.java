@@ -1,5 +1,6 @@
 package poo;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -12,7 +13,7 @@ public class Uso_Empleado {
 		
 		jefe_RRHH.set_incentivo(400000);;
 		
-		Empleado empleado = new Empleado("Jhon Mantilla", 2000000, 2021, 8, 17);
+		/*Empleado empleado = new Empleado("Jhon Mantilla", 2000000, 2021, 8, 17);
 		Empleado empleado1 = new Empleado("Jessika Vallejo", 2100000, 2022, 8, 17);
 		Empleado empleado2 = new Empleado("Zhoe", 1200000, 2020, 8, 17);
 		
@@ -20,9 +21,9 @@ public class Uso_Empleado {
 		empleado1.subeSueldo(10);
 		empleado2.subeSueldo(10);
 		
-		System.out.println("Nombre: " + empleado.get_nombre() + " Sueldo: " + empleado.get_sueldo() + " Fecha:" + empleado.get_altaContrato());
-		System.out.println("Nombre: " + empleado1.get_nombre() + " Sueldo: " + empleado1.get_sueldo() + " Fecha:" + empleado1.get_altaContrato());
-		System.out.println("Nombre: " + empleado2.get_nombre() + " Sueldo: " + empleado2.get_sueldo() + " Fecha:" + empleado2.get_altaContrato());
+		System.out.println("id:"+ empleado.get_id() + " Nombre: " + empleado.get_nombre() + " Sueldo: " + empleado.get_sueldo() + " Fecha:" + empleado.get_altaContrato());
+		System.out.println("id:"+ empleado1.get_id() + " Nombre: " + empleado1.get_nombre() + " Sueldo: " + empleado1.get_sueldo() + " Fecha:" + empleado1.get_altaContrato());
+		System.out.println("id:"+ empleado2.get_id() + " Nombre: " + empleado2.get_nombre() + " Sueldo: " + empleado2.get_sueldo() + " Fecha:" + empleado2.get_altaContrato());*/
 		
 		
 		//Creando un array de la clase
@@ -53,9 +54,12 @@ public class Uso_Empleado {
 			
 		}
 		
+		//la clase array metodo statico sort
+		Arrays.sort(misempleados);
+		
 		for (Empleado element: misempleados) {
 														/*Enlazado dinamico con el metodo get_sueldo() diferencia entre clases cual debe llamar*/
-			System.out.println("Nombre: " + element.get_nombre() + " Sueldo: " + element.get_sueldo() + " Fecha:" + element.get_altaContrato());
+			System.out.println("id:"+ element.get_id() + " Nombre: " + element.get_nombre() + " Sueldo: " + element.get_sueldo() + " Fecha:" + element.get_altaContrato());
 		}
 		
 		
@@ -63,7 +67,7 @@ public class Uso_Empleado {
 
 }
 
-class Empleado {
+class Empleado implements Comparable{
 	
 	private String nombre;
 	
@@ -97,10 +101,15 @@ class Empleado {
 		
 	}
 	
+	public int get_id() {
+		
+		return id;
+	}
+	
 	
 	public String get_nombre() {
 		
-		return " id: " + id + " "+ nombre ;
+		return  nombre ;
 	}
 	
 	
@@ -122,6 +131,26 @@ class Empleado {
 		
 		sueldo += aumento;
 		
+	}
+
+	@Override
+	public int compareTo(Object obj) {
+		// TODO Auto-generated method stub
+		
+		Empleado otroEmpleado = (Empleado)obj;
+		
+		if (this.id<otroEmpleado.id) {
+			
+			return -1;
+			
+		}
+		
+		if (this.id>otroEmpleado.id) {
+			
+			return 1;
+		}
+		
+		return 0;
 	}
 }
 
