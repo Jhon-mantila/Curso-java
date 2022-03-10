@@ -36,7 +36,7 @@ class Reloj {
 		
 	}*/
 	
-	public void iniciarHora(int intervalo, boolean sonido) {
+	public void iniciarHora(final int intervalo, final boolean sonido) {
 		
 	  class DameLaHora implements ActionListener {
 			//Clase interna local va dentro de un meteodo y solo sepuede hacer esto siempre y cuando solo se instancie una sola vez
