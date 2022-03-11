@@ -39,8 +39,7 @@ class LaminaConFiguras extends JPanel{
 			g.drawLine(70,70, 100, 70);
 			
 			g.drawArc(80, 80, 100, 100, 150,150);
-			
-			
+						
 			
 		}
 }
