@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class TrabajoEventos {
+public class TrabajoEventos2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -17,9 +17,9 @@ public class TrabajoEventos {
 
 }
 
-class MarcoBotones extends JFrame{
+class MarcoBotones2 extends JFrame{
 	
-	public MarcoBotones(){
+	public MarcoBotones2(){
 		
 		setTitle("Envento con Botones");
 		
@@ -42,43 +42,44 @@ class MarcoBotones extends JFrame{
  * 
  * */
 
-class LaminaBotones extends JPanel implements ActionListener{
+class LaminaBotones2 extends JPanel {
 	
 	//Fuente
 	JButton btnNegro = new JButton("Negro");
 	JButton btnAmarillo = new JButton("Amarillo");
 	JButton btnAzul = new JButton("Azul");
 	
-	public LaminaBotones() {
+	public LaminaBotones2() {
 		
 		add(btnNegro);
 		add(btnAmarillo);
 		add(btnAzul);
 		
-		btnNegro.addActionListener(this);
-		btnAmarillo.addActionListener(this);
-		btnAzul.addActionListener(this);
+		ColorFondo amarillo = new ColorFondo(Color.YELLOW);
+		
+		ColorFondo azul = new ColorFondo(Color.BLUE);
+		
+		btnNegro.addActionListener(new ColorFondo(Color.BLACK));
+		btnAmarillo.addActionListener(amarillo);
+		btnAzul.addActionListener(azul);
 	}
-	//actionPerdormed = acción Realizada
-	public void actionPerformed(ActionEvent e) {
+	
+	private class ColorFondo  implements ActionListener{
 		
-		//getSource devuelve la fuente
-		Object botonPulsado = e.getSource();
-		
-		if(botonPulsado==btnNegro) {
+		private Color colorFondo;
+
+		public ColorFondo(Color c) {
 			
-			setBackground(Color.BLACK);
+			colorFondo = c;
 			
-		}else if(botonPulsado == btnAmarillo) {
-			
-			setBackground(Color.YELLOW);
-			
-		}else {
-			
-			setBackground(Color.BLUE);
 		}
 		
-		
-	}
+		//actionPerdormed = acción Realizada
+		public void actionPerformed(ActionEvent e) {
+			
+			setBackground(colorFondo);
+		}
+	}// termina clase interna las internas deben ser privadas
 
 }
+
