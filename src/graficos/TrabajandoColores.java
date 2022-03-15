@@ -33,6 +33,7 @@ class Marco_colores extends JFrame{
 		
 		//lamina.setBackground(Color.YELLOW);
 		
+		//Color por defecto del sistemas operativo
 		lamina.setBackground(SystemColor.window);
 		
 		setVisible(true);
