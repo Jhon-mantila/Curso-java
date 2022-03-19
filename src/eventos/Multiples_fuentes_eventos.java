@@ -37,7 +37,26 @@ class Lamina_Multiples_Envento extends JPanel  {
 	
 	public Lamina_Multiples_Envento() {
 		
-		JButton btn_azul = new JButton("Azul");
+		ImageIcon IconAmarillo = new ImageIcon("src/graficos/bolaAmarilla.png");
+		
+		AccionColor accionAmarillo = new AccionColor("Amarillo", IconAmarillo, Color.YELLOW);
+		
+		AccionColor accionAzul = new AccionColor("Azul", new ImageIcon("src/graficos/bolaAzul.png"), Color.BLUE);
+		
+		AccionColor accionRojo = new AccionColor("Rojo", new ImageIcon("src/graficos/bolaRoja.png"), Color.RED);
+		
+		
+		JButton btn_amarillo = new JButton(accionAmarillo);
+		
+		add(btn_amarillo);
+		
+		//add(new JButton(accionAmarillo));
+		
+		add(new JButton(accionAzul));
+		
+		add(new JButton(accionRojo));
+		
+		/*JButton btn_azul = new JButton("Azul");
 		
 		JButton btn_amarillo = new JButton("Amarillo");
 		
@@ -45,21 +64,39 @@ class Lamina_Multiples_Envento extends JPanel  {
 		
 		add(btn_azul);
 		add(btn_amarillo);
-		add(btn_verde);
+		add(btn_verde);*/
 		
+		
+	}
+	
+	private class AccionColor extends AbstractAction{
+
+		public AccionColor(String nombre_btn, Icon icono, Color color_btn) {
+			
+			putValue(Action.NAME, nombre_btn);
+			
+			putValue(Action.SMALL_ICON, icono);
+			
+			putValue(Action.SHORT_DESCRIPTION, "Poner la lamina de color: " + nombre_btn);
+			
+			putValue("COLOR_DE_FONDO", color_btn);
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			Color c = (Color) getValue("COLOR_DE_FONDO");
+			
+			setBackground(c);
+			
+			String descripcion = (String)getValue(Action.SHORT_DESCRIPTION);
+			
+			System.out.println("Nombre: " + getValue(Action.NAME) + " Descripción: " + descripcion);
+		}
 		
 	}
 	
 }
 
-class AccionColor extends AbstractAction{
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-}
 
 
