@@ -66,6 +66,25 @@ class Lamina_Multiples_Envento extends JPanel  {
 		add(btn_amarillo);
 		add(btn_verde);*/
 		
+		InputMap mapa_entrada = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+		
+		KeyStroke teclaAmarilla = KeyStroke.getKeyStroke("ctrl A");
+		
+		mapa_entrada.put(teclaAmarilla, "FONDO_AMARILLO");
+		
+		mapa_entrada.put(KeyStroke.getKeyStroke("ctrl B"), "FONDO_AZUL");
+		
+		//mapa_entrada.put(KeyStroke.getKeyStroke("ctrl O"), "FONDO_AZUL");
+		
+		mapa_entrada.put(KeyStroke.getKeyStroke("ctrl R"), "FONDO_ROJO");
+		
+		ActionMap mapaAccion = getActionMap();
+		
+		mapaAccion.put("FONDO_AMARILLO", accionAmarillo);
+		
+		mapaAccion.put("FONDO_AZUL", accionAzul);
+		
+		mapaAccion.put("FONDO_ROJO", accionRojo);
 		
 	}
 	
