@@ -27,9 +27,9 @@ class Marco_Layout extends JFrame {
 		
 		Lamina_Layout lamina =new  Lamina_Layout();
 		
-		FlowLayout disposicion = new FlowLayout(FlowLayout.LEFT);
+		//FlowLayout disposicion = new FlowLayout(FlowLayout.CENTER, 50, 30);
 		
-		lamina.setLayout(disposicion);
+		//lamina.setLayout(disposicion);
 		
 		add(lamina);
 		
@@ -41,6 +41,11 @@ class Marco_Layout extends JFrame {
 class Lamina_Layout extends JPanel{
 	
 	public Lamina_Layout() {
+		
+		
+		FlowLayout disposicion = new FlowLayout(FlowLayout.CENTER, 50, 30);
+		
+		setLayout(disposicion);
 		
 		JButton Amarillo = new JButton("Amrillo");
 		
