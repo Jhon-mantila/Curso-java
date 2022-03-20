@@ -94,6 +94,8 @@ class Marco_emergente extends JFrame{
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			dispose();
+			
+			contador = 0;
 		}
 		
 		
