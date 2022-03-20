@@ -1,6 +1,7 @@
 package layoutsandcomponentes;
 
 import java.awt.*;
+import java.awt.event.*;
 
 import javax.swing.*;
 
@@ -31,6 +32,8 @@ class MarcoCalculadora extends JFrame{
 		
 		add(lamina);
 		
+		//pack();
+		
 	}
 	
 }
@@ -39,11 +42,18 @@ class Lamina_Pantalla extends JPanel{
 	
 	private JPanel LaminaCuerpo;
 	
+	private JButton btnPantalla;
+	
+	private boolean principio;
+	
+	
 	public Lamina_Pantalla() {
+		
+		principio = true;
 		
 		setLayout(new BorderLayout());
 		
-		JButton btnPantalla = new JButton("0");
+		btnPantalla = new JButton("0");
 		
 		btnPantalla.setEnabled(false);
 		
@@ -62,35 +72,72 @@ class Lamina_Pantalla extends JPanel{
 		
 		LaminaCuerpo.add(boton2);*/
 		
-		ponerBoton("7");
-		ponerBoton("8");
-		ponerBoton("9");
-		ponerBoton("/");
+		ActionListener insertar = new Obtener_numeros();
 		
-		ponerBoton("4");
-		ponerBoton("5");
-		ponerBoton("6");
-		ponerBoton("*");
+		ponerBoton("7", new Obtener_numeros());
+		ponerBoton("8", insertar);
+		ponerBoton("9", insertar);
+		ponerBoton("/", null);
 		
-		ponerBoton("1");
-		ponerBoton("2");
-		ponerBoton("3");
-		ponerBoton("-");
+		ponerBoton("4", insertar);
+		ponerBoton("5", insertar);
+		ponerBoton("6", insertar);
+		ponerBoton("*", null);
 		
-		ponerBoton("0");
-		ponerBoton(".");
-		ponerBoton("=");
-		ponerBoton("+");
+		ponerBoton("1", insertar);
+		ponerBoton("2", insertar);
+		ponerBoton("3", insertar);
+		ponerBoton("-", null);
+		
+		ponerBoton("0", insertar);
+		ponerBoton(".", insertar);
+		ponerBoton("=", null);
+		ponerBoton("+", null);
 		
 		add(LaminaCuerpo, BorderLayout.CENTER);
 		
 		
 	}
 	
-	private void ponerBoton(String rotulo) {
+	private void ponerBoton(String rotulo, ActionListener Oyente) {
 		
 		JButton boton = new JButton(rotulo);
 		
+		boton.addActionListener(Oyente);
+		
 		LaminaCuerpo.add(boton);
 	}
+	
+	
+	private class Obtener_numeros implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			String entrada = e.getActionCommand();
+			
+			if (principio) {
+				
+				btnPantalla.setText("");
+				
+				principio = false;
+			}
+			
+			btnPantalla.setText(btnPantalla.getText() + entrada);
+		}
+		
+		
+	}
+	
+	//clase interna para las operaciones matematicas
+	private class AccionOrden implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
 }
