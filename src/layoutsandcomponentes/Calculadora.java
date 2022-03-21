@@ -46,6 +46,10 @@ class Lamina_Pantalla extends JPanel{
 	
 	private boolean principio;
 	
+	private double resultado;
+	
+	private String ultimaOperacion;
+	
 	
 	public Lamina_Pantalla() {
 		
@@ -74,29 +78,31 @@ class Lamina_Pantalla extends JPanel{
 		
 		ActionListener insertar = new Obtener_numeros();
 		
+		ActionListener orden = new AccionOrden();
+		
 		ponerBoton("7", new Obtener_numeros());
 		ponerBoton("8", insertar);
 		ponerBoton("9", insertar);
-		ponerBoton("/", null);
+		ponerBoton("/", orden);
 		
 		ponerBoton("4", insertar);
 		ponerBoton("5", insertar);
 		ponerBoton("6", insertar);
-		ponerBoton("*", null);
+		ponerBoton("*", orden);
 		
 		ponerBoton("1", insertar);
 		ponerBoton("2", insertar);
 		ponerBoton("3", insertar);
-		ponerBoton("-", null);
+		ponerBoton("-", orden);
 		
 		ponerBoton("0", insertar);
 		ponerBoton(".", insertar);
-		ponerBoton("=", null);
-		ponerBoton("+", null);
+		ponerBoton("=", orden);
+		ponerBoton("+", orden);
 		
 		add(LaminaCuerpo, BorderLayout.CENTER);
 		
-		
+		ultimaOperacion = "=";
 	}
 	
 	private void ponerBoton(String rotulo, ActionListener Oyente) {
@@ -108,7 +114,7 @@ class Lamina_Pantalla extends JPanel{
 		LaminaCuerpo.add(boton);
 	}
 	
-	
+	//clase interna para obtener los números
 	private class Obtener_numeros implements ActionListener{
 
 		@Override
@@ -136,6 +142,46 @@ class Lamina_Pantalla extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			
+			String operacion = e.getActionCommand();
+			
+			//System.out.println(operacion);
+			
+			calcular(Double.parseDouble(btnPantalla.getText()));
+			
+			ultimaOperacion = operacion;
+			
+			principio = true;
+			
+			
+		}
+		
+		public void calcular(double x) {
+			
+			if (ultimaOperacion.equals("+")) {
+				
+				resultado += x;
+				
+				//System.out.println(resultado);
+				
+			}else if(ultimaOperacion.equals("-")) {
+				
+				resultado -= x;
+				
+			}else if(ultimaOperacion.equals("*")) {
+				
+				resultado *= x;
+				
+			}else if(ultimaOperacion.equals("/")) {
+				
+				resultado /= x;
+				
+			}else if(ultimaOperacion.equals("=")) {
+				
+				resultado = x;
+			}
+			
+			btnPantalla.setText("" + resultado);
+									
 		}
 		
 	}
