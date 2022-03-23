@@ -57,7 +57,7 @@ class Marco_area2 extends JFrame{
 		
 		laminaBotones.add(insertar);
 		
-		botonSaltoLinea = new JButton("salto Línea");
+		botonSaltoLinea = new JButton("Salto Línea");
 		
 		botonSaltoLinea.addActionListener(new ActionListener() {
 
@@ -68,7 +68,7 @@ class Marco_area2 extends JFrame{
 				
 				areaTexto.setLineWrap(saltar);
 				
-				if(saltar==true) {
+				/*if(saltar==true) {
 					
 					botonSaltoLinea.setText("Quitar salto");
 					
@@ -76,7 +76,11 @@ class Marco_area2 extends JFrame{
 					
 					botonSaltoLinea.setText("Salto Línea");
 										
-				}
+				}*/
+				
+				//operador ternario
+				
+				botonSaltoLinea.setText(saltar ? "Quitar Salto" : "Salto Línea");
 			}
 			
 			
