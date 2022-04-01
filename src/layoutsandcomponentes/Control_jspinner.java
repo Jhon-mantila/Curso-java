@@ -40,9 +40,19 @@ class LaminaSpinner extends JPanel{
 	
 	public LaminaSpinner() {
 		
-		//JSpinner mispinner = new JSpinner();
+		JSpinner mispinner = new JSpinner(new SpinnerNumberModel(5,0,10,1));
 		
-		JSpinner mispinner = new JSpinner(new SpinnerDateModel());
+		//String Lista[] = {"Enero", "Febrero", "Marzo", "Abril"};
+		
+		///String Lista[] = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+		
+		//JSpinner mispinner = new JSpinner(new SpinnerDateModel());
+		
+		//JSpinner mispinner = new JSpinner(new SpinnerListModel(Lista));
+		
+		Dimension d = new Dimension(230,30);
+		
+		mispinner.setPreferredSize(d);
 		
 		add(mispinner);
 		
