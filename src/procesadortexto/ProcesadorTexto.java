@@ -2,6 +2,8 @@ package procesadortexto;
 
 import java.awt.*;
 
+import java.awt.event.*;
+
 import javax.swing.*;
 
 public class ProcesadorTexto {
@@ -35,6 +37,8 @@ class MenuProcesador extends JFrame{
 
 class LaminaProcesador extends JPanel{
 	
+	private JTextPane miarea;
+	
 	public LaminaProcesador() {
 		
 		setLayout(new BorderLayout());
@@ -52,6 +56,36 @@ class LaminaProcesador extends JPanel{
 			JMenuItem arial = new JMenuItem("Arial");
 			JMenuItem courier = new JMenuItem("Courier");
 			JMenuItem verdana = new JMenuItem("Verdana");
+			
+			//Gestiona_menu eventoC = new Gestiona_menu();
+			/*Utilizando una clase anonima*/
+			arial.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					miarea.setFont(new Font("Arial", Font.PLAIN, 12));
+				}
+				
+			});
+			courier.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					miarea.setFont(new Font("Courier", Font.PLAIN, 12));
+				}
+				
+			});
+			verdana.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					miarea.setFont(new Font("Verdana", Font.PLAIN, 12));
+				}
+				
+			});
 			
 			fuente.add(arial);
 			fuente.add(courier);
@@ -83,7 +117,21 @@ class LaminaProcesador extends JPanel{
 		
 		add(laminaMenu, BorderLayout.NORTH);
 		
-		
+		/*-------Agrego a la lamina--------*/
+		miarea = new JTextPane();
+			
+		add(miarea, BorderLayout.CENTER);
+
+	}
+	
+	/*Clase interna*/
+	private class Gestiona_menu implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			miarea.setFont(new Font("Courier", Font.PLAIN, 12));
+		}
 		
 	}
 }
