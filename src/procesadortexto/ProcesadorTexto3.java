@@ -56,19 +56,19 @@ class LaminaProcesador2 extends JPanel{
 			tamano = new JMenu("Tamaño");
 			
 			/*----------Menu Item de fuentes-----------------*/
-			configura_menu("Arial", "fuente", "Arial", 9, 12);
-			configura_menu("Courier", "fuente", "Courier", 9, 12);
-			configura_menu("Cooper Black", "fuente", "Cooper Black", 9, 12);
+			configura_menu("Arial", "fuente", "Arial", 9, 12, "");
+			configura_menu("Courier", "fuente", "Courier", 9, 12, "");
+			configura_menu("Cooper Black", "fuente", "Cooper Black", 9, 12, "");
 			
 			/*----------Menu Item de estilos-----------------*/
-			configura_menu("Negrita", "estilos", "", Font.BOLD, 1);
-			configura_menu("Cursiva", "estilos", "", Font.ITALIC, 1);
+			configura_menu("Negrita", "estilos", "", Font.BOLD, 1,"bin/procesadortexto/negrita.png");
+			configura_menu("Cursiva", "estilos", "", Font.ITALIC, 1,"bin/procesadortexto/cursiva.png");
 			
 			/*----------Menu Item de tamaño-----------------*/
-			configura_menu("14", "tamano", "", 9, 14);
-			configura_menu("16", "tamano", "", 9, 16);
-			configura_menu("20", "tamano", "", 9, 20);
-			configura_menu("24", "tamano", "", 9, 24);
+			configura_menu("14", "tamano", "", 9, 14,"");
+			configura_menu("16", "tamano", "", 9, 16,"");
+			configura_menu("20", "tamano", "", 9, 20,"");
+			configura_menu("24", "tamano", "", 9, 24,"");
 		
 			mibarra.add(fuente);
 			mibarra.add(estilos);
@@ -86,9 +86,9 @@ class LaminaProcesador2 extends JPanel{
 	}
 	
 
-	public void configura_menu(String rotulo, String menu, String tipo_letra, int estilo, int tam) {
+	public void configura_menu(String rotulo, String menu, String tipo_letra, int estilo, int tam, String ruta_icono) {
 		
-		JMenuItem elem_menu = new JMenuItem(rotulo);
+		JMenuItem elem_menu = new JMenuItem(rotulo, new ImageIcon(ruta_icono));
 		
 		if(menu == "fuente"){
 			

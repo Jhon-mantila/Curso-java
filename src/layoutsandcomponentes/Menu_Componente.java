@@ -49,9 +49,13 @@ class Lamina_Menu extends JPanel{
 		JMenuItem guardar_como = new JMenuItem("Guardar Como");
 		JMenuItem cerar = new JMenuItem("Cerrar");
 		
-		JMenuItem cortar = new JMenuItem("Cortar");
-		JMenuItem copiar = new JMenuItem("Copiar");
-		JMenuItem pegar = new JMenuItem("Pegar");
+		JMenuItem cortar = new JMenuItem("Cortar", new ImageIcon("bin/layoutsandcomponentes/cortar.png"));
+		JMenuItem copiar = new JMenuItem("Copiar", new ImageIcon("bin/layoutsandcomponentes/copiar.png"));
+		
+		//cambia la posición del texto 
+		copiar.setHorizontalTextPosition(SwingConstants.LEFT);
+		
+		JMenuItem pegar = new JMenuItem("Pegar", new ImageIcon("bin/layoutsandcomponentes/pegar.png"));
 		
 		JMenu opciones = new JMenu("Opciones");
 		JMenuItem opcion1 = new JMenuItem("Opcion 1");
