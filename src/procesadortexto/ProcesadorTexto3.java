@@ -6,21 +6,21 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-public class ProcesadorTexto2 {
+public class ProcesadorTexto3 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		MenuProcesador3 mimarco = new MenuProcesador3();
+		MenuProcesador2 mimarco = new MenuProcesador2();
 		
 		mimarco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 }
 
-class MenuProcesador3 extends JFrame{
+class MenuProcesador2 extends JFrame{
 	
-	public MenuProcesador3() {
+	public MenuProcesador2() {
 		
 		setTitle("Procesador de Texto");
 		
@@ -35,13 +35,13 @@ class MenuProcesador3 extends JFrame{
 	
 }
 
-class LaminaProcesador3 extends JPanel{
+class LaminaProcesador2 extends JPanel{
 	
 	private JTextPane miarea;
 	private JMenu fuente, estilos, tamano;
 	private Font letras;
 	
-	public LaminaProcesador3() {
+	public LaminaProcesador2() {
 		
 		setLayout(new BorderLayout());
 		
