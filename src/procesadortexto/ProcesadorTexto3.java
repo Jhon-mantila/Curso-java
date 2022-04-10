@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
+import javax.swing.text.*;
 
 public class ProcesadorTexto3 {
 
@@ -57,7 +58,7 @@ class LaminaProcesador2 extends JPanel{
 			/*----------Menu Item de fuentes-----------------*/
 			configura_menu("Arial", "fuente", "Arial", 9, 12);
 			configura_menu("Courier", "fuente", "Courier", 9, 12);
-			configura_menu("Verdana", "fuente", "Vernada", 9, 12);
+			configura_menu("Cooper Black", "fuente", "Cooper Black", 9, 12);
 			
 			/*----------Menu Item de estilos-----------------*/
 			configura_menu("Negrita", "estilos", "", Font.BOLD, 1);
@@ -93,74 +94,44 @@ class LaminaProcesador2 extends JPanel{
 			
 			fuente.add(elem_menu);
 			
+			if (tipo_letra.equals("Arial")) {
+				
+				elem_menu.addActionListener(new StyledEditorKit.FontFamilyAction("Cambia Letra", "Arial"));
+				
+			}else if (tipo_letra.equals("Courier")) {
+				
+				elem_menu.addActionListener(new StyledEditorKit.FontFamilyAction("Cambia Letra", "Courier"));
+				
+			}else if (tipo_letra.equals("Cooper Black")) {
+				
+				elem_menu.addActionListener(new StyledEditorKit.FontFamilyAction("Cambia Letra", "Cooper Black"));
+			}
+				
+			
 		}else if(menu == "estilos"){
 			
 			this.estilos.add(elem_menu);
+			
+			if (estilo==Font.BOLD) {
+				
+				elem_menu.addActionListener(new StyledEditorKit.BoldAction());
+				
+			}else if (estilo==Font.ITALIC){
+				
+				elem_menu.addActionListener(new StyledEditorKit.ItalicAction());
+			}
+			
+			
+			
 			
 		}else if(menu == "tamano") {
 			
 			tamano.add(elem_menu);
 			
+			elem_menu.addActionListener(new StyledEditorKit.FontSizeAction("CAMBIA_TAMAÑO", tam));
 		}
 		
-		elem_menu.addActionListener(new Gestiona_eventos(rotulo, tipo_letra, estilo, tam));
-		
-	}//Metodo 
-	
-	private class Gestiona_eventos implements ActionListener{
-		
-		String tipo_letra, menu;
-		
-		int estilo_letra, tam_letra;
-		
-		public Gestiona_eventos(String elemento, String letra, int estilo, int tam_letras) {
-			
-			tipo_letra = letra;
-			
-			estilo_letra = estilo;
-			
-			tam_letra = tam_letras;
-			
-			menu = elemento;
-		}
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-		
-			letras = miarea.getFont();
-			
-			if (menu.equals("Arial")|| menu.equals("Courier") || menu.equals("Verdana")) {
-				
-				estilo_letra = letras.getStyle();
-				
-				tam_letra = letras.getSize();
-				
-			}else if(menu.equals("Cursiva") || menu.equals("Negrita")) {
-				
-				if (letras.getStyle() == 1  || letras.getStyle() == 2) {
-					
-					estilo_letra = 3;
-				}
-				
-				tipo_letra = letras.getFontName();
-					
-				
-				tam_letra = letras.getSize();
-				
-			}else if (menu.equals("14") || menu.equals("16") || menu.equals("20") || menu.equals("24")) {
-				
-				tipo_letra = letras.getFontName();
-				
-				estilo_letra = letras.getStyle();
-			}
-			
-			miarea.setFont(new Font(tipo_letra, estilo_letra, tam_letra));
-			
-			System.out.println("Tipo: " + tipo_letra + " estilo: " + estilo_letra + " tam_letra" + tam_letra);
-		}
-		
-	}
-	
-	
+
+	}//Método 
+
 }
