@@ -41,6 +41,7 @@ class LaminaProcesador2 extends JPanel{
 	private JTextPane miarea;
 	private JMenu fuente, estilos, tamano;
 	private Font letras;
+	private ButtonGroup tamano_grupo;
 	
 	public LaminaProcesador2() {
 		
@@ -56,19 +57,58 @@ class LaminaProcesador2 extends JPanel{
 			tamano = new JMenu("Tamaño");
 			
 			/*----------Menu Item de fuentes-----------------*/
-			configura_menu("Arial", "fuente", "Arial", 9, 12, "");
-			configura_menu("Courier", "fuente", "Courier", 9, 12, "");
-			configura_menu("Cooper Black", "fuente", "Cooper Black", 9, 12, "");
+			configura_menu("Arial", "fuente", "Arial");
+			configura_menu("Courier", "fuente", "Courier");
+			configura_menu("Cooper Black", "fuente", "Cooper Black");
 			
-			/*----------Menu Item de estilos-----------------*/
-			configura_menu("Negrita", "estilos", "", Font.BOLD, 1,"bin/procesadortexto/negrita.png");
-			configura_menu("Cursiva", "estilos", "", Font.ITALIC, 1,"bin/procesadortexto/cursiva.png");
+			/*----------Menu Item de estilos-----------------*/	
+			configura_estilos("Negrita", "estilos", Font.BOLD,  "bin/procesadortexto/negrita.png");
+			configura_estilos("Cursiva", "estilos", Font.ITALIC,"bin/procesadortexto/cursiva.png");
+			
+			/*JCheckBoxMenuItem negrita = new JCheckBoxMenuItem("Negrita", new ImageIcon("bin/procesadortexto/negrita.png"));
+			JCheckBoxMenuItem cursiva = new JCheckBoxMenuItem("Cursiva", new ImageIcon("bin/procesadortexto/cursiva.png"));
+			
+			negrita.addActionListener(new StyledEditorKit.BoldAction());
+			cursiva.addActionListener(new StyledEditorKit.ItalicAction());
+			
+			estilos.add(negrita);
+			estilos.add(cursiva);*/
 			
 			/*----------Menu Item de tamaño-----------------*/
-			configura_menu("14", "tamano", "", 9, 14,"");
-			configura_menu("16", "tamano", "", 9, 16,"");
-			configura_menu("20", "tamano", "", 9, 20,"");
-			configura_menu("24", "tamano", "", 9, 24,"");
+			
+			tamano_grupo = new ButtonGroup();
+			
+			configura_tamano("12", "tamano", 12, true);
+			configura_tamano("16", "tamano", 16, false);
+			configura_tamano("20", "tamano", 20, false);
+			configura_tamano("24", "tamano", 24, false);
+			
+			/*configura_menu("14", "tamano", "", 9, 14);
+			configura_menu("16", "tamano", "", 9, 16);
+			configura_menu("20", "tamano", "", 9, 20);
+			configura_menu("24", "tamano", "", 9, 24);*/
+			
+			/*ButtonGroup tamano_grupo = new ButtonGroup();
+			
+			JRadioButtonMenuItem doce = new JRadioButtonMenuItem("12");
+			JRadioButtonMenuItem diesiceis = new JRadioButtonMenuItem("16");
+			JRadioButtonMenuItem veite = new JRadioButtonMenuItem("20");
+			JRadioButtonMenuItem veiti_cuatro = new JRadioButtonMenuItem("24");
+			
+			tamano_grupo.add(doce);
+			tamano_grupo.add(diesiceis);
+			tamano_grupo.add(veite);
+			tamano_grupo.add(veiti_cuatro);
+			
+			doce.addActionListener(new StyledEditorKit.FontSizeAction("CAMBIA_TAMAÑO", 12));
+			diesiceis.addActionListener(new StyledEditorKit.FontSizeAction("CAMBIA_TAMAÑO", 16));
+			veite.addActionListener(new StyledEditorKit.FontSizeAction("CAMBIA_TAMAÑO", 20));
+			veiti_cuatro.addActionListener(new StyledEditorKit.FontSizeAction("CAMBIA_TAMAÑO", 24));
+			
+			tamano.add(doce);
+			tamano.add(diesiceis);
+			tamano.add(veite);
+			tamano.add(veiti_cuatro);*/
 		
 			mibarra.add(fuente);
 			mibarra.add(estilos);
@@ -86,9 +126,9 @@ class LaminaProcesador2 extends JPanel{
 	}
 	
 
-	public void configura_menu(String rotulo, String menu, String tipo_letra, int estilo, int tam, String ruta_icono) {
+	public void configura_menu(String rotulo, String menu, String tipo_letra) {
 		
-		JMenuItem elem_menu = new JMenuItem(rotulo, new ImageIcon(ruta_icono));
+		JMenuItem elem_menu = new JMenuItem(rotulo);
 		
 		if(menu == "fuente"){
 			
@@ -108,30 +148,44 @@ class LaminaProcesador2 extends JPanel{
 			}
 				
 			
-		}else if(menu == "estilos"){
-			
-			this.estilos.add(elem_menu);
-			
-			if (estilo==Font.BOLD) {
-				
-				elem_menu.addActionListener(new StyledEditorKit.BoldAction());
-				
-			}else if (estilo==Font.ITALIC){
-				
-				elem_menu.addActionListener(new StyledEditorKit.ItalicAction());
-			}
-			
-			
-			
-			
-		}else if(menu == "tamano") {
-			
-			tamano.add(elem_menu);
-			
-			elem_menu.addActionListener(new StyledEditorKit.FontSizeAction("CAMBIA_TAMAÑO", tam));
 		}
 		
 
-	}//Método 
+	}//Métodos de Archivo
+	
+	public void configura_estilos(String rotulo, String menu, int estilo, String ruta_icon) {
+		
+		JCheckBoxMenuItem elem_estilo = new JCheckBoxMenuItem(rotulo, new ImageIcon(ruta_icon));
+		
+		if(menu == "estilos"){
+			
+			this.estilos.add(elem_estilo);
+			
+			if (estilo==Font.BOLD) {
+				
+				elem_estilo.addActionListener(new StyledEditorKit.BoldAction());
+				
+			}else if (estilo==Font.ITALIC){
+				
+				elem_estilo.addActionListener(new StyledEditorKit.ItalicAction());
+			}
+			
+		}
+	}//Método de estilos
+	
+	public void configura_tamano(String rotulo, String menu, int tam, boolean estado) {
+		
+		JRadioButtonMenuItem elem_tam = new JRadioButtonMenuItem(rotulo, estado);
+		
+		tamano_grupo.add(elem_tam);
+		
+		if(menu == "tamano") {
+			
+			tamano.add(elem_tam);
+			
+			elem_tam.addActionListener(new StyledEditorKit.FontSizeAction("CAMBIA_TAMAÑO", tam));
+		}
+		
+	}//Método tamano
 
 }
