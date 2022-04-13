@@ -42,6 +42,7 @@ class LaminaProcesador2 extends JPanel{
 	private JMenu fuente, estilos, tamano;
 	private Font letras;
 	private ButtonGroup tamano_grupo;
+	private JPopupMenu emergente;
 	
 	public LaminaProcesador2() {
 		
@@ -83,11 +84,6 @@ class LaminaProcesador2 extends JPanel{
 			configura_tamano("20", "tamano", 20, false);
 			configura_tamano("24", "tamano", 24, false);
 			
-			/*configura_menu("14", "tamano", "", 9, 14);
-			configura_menu("16", "tamano", "", 9, 16);
-			configura_menu("20", "tamano", "", 9, 20);
-			configura_menu("24", "tamano", "", 9, 24);*/
-			
 			/*ButtonGroup tamano_grupo = new ButtonGroup();
 			
 			JRadioButtonMenuItem doce = new JRadioButtonMenuItem("12");
@@ -122,7 +118,48 @@ class LaminaProcesador2 extends JPanel{
 		miarea = new JTextPane();
 			
 		add(miarea, BorderLayout.CENTER);
+		
+		
+		/*Menu emergente*/
+		emergente = new JPopupMenu();
+		
+		configura_menu_emergente("Negrita", "emergente", Font.BOLD, "bin/procesadortexto/negrita.png");
+		configura_menu_emergente("Cursiva", "emergente", Font.ITALIC, "bin/procesadortexto/cursiva.png");
+		
+		
+		/*JMenuItem negritaEmergente = new JMenuItem("Negrita", new ImageIcon("bin/procesadortexto/negrita.png"));
+		JMenuItem cursivaEmergente = new JMenuItem("Cursiva", new ImageIcon("bin/procesadortexto/cursiva.png"));
 
+		negritaEmergente.addActionListener(new StyledEditorKit.BoldAction());
+		cursivaEmergente.addActionListener(new StyledEditorKit.ItalicAction());
+		
+		emergente.add(negritaEmergente);
+		emergente.add(cursivaEmergente);*/
+
+		
+		miarea.setComponentPopupMenu(emergente);
+
+	}
+	
+	public void configura_menu_emergente(String rotulo, String menu_emergente, int estilo, String ruta_icono) {
+		
+		JMenuItem elem_menu_emergente = new JMenuItem(rotulo, new ImageIcon(ruta_icono));
+		
+		if(menu_emergente == "emergente"){
+			
+			this.emergente.add(elem_menu_emergente);
+			
+			if (estilo==Font.BOLD) {
+				
+				elem_menu_emergente.addActionListener(new StyledEditorKit.BoldAction());
+				
+			}else if (estilo==Font.ITALIC){
+				
+				elem_menu_emergente.addActionListener(new StyledEditorKit.ItalicAction());
+			}
+			
+		}
+		
 	}
 	
 
@@ -155,7 +192,9 @@ class LaminaProcesador2 extends JPanel{
 	
 	public void configura_estilos(String rotulo, String menu, int estilo, String ruta_icon) {
 		
-		JCheckBoxMenuItem elem_estilo = new JCheckBoxMenuItem(rotulo, new ImageIcon(ruta_icon));
+		//JCheckBoxMenuItem elem_estilo = new JCheckBoxMenuItem(rotulo, new ImageIcon(ruta_icon));
+		
+		JMenuItem elem_estilo = new JMenuItem(rotulo, new ImageIcon(ruta_icon));
 		
 		if(menu == "estilos"){
 			
