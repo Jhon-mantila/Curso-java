@@ -91,6 +91,8 @@ class LaminaProcesador2 extends JPanel{
 			JRadioButtonMenuItem veite = new JRadioButtonMenuItem("20");
 			JRadioButtonMenuItem veiti_cuatro = new JRadioButtonMenuItem("24");
 			
+			//veiti_cuatro.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_DOWN_MASK));
+			
 			tamano_grupo.add(doce);
 			tamano_grupo.add(diesiceis);
 			tamano_grupo.add(veite);
@@ -141,27 +143,6 @@ class LaminaProcesador2 extends JPanel{
 
 	}
 	
-	public void configura_menu_emergente(String rotulo, String menu_emergente, int estilo, String ruta_icono) {
-		
-		JMenuItem elem_menu_emergente = new JMenuItem(rotulo, new ImageIcon(ruta_icono));
-		
-		if(menu_emergente == "emergente"){
-			
-			this.emergente.add(elem_menu_emergente);
-			
-			if (estilo==Font.BOLD) {
-				
-				elem_menu_emergente.addActionListener(new StyledEditorKit.BoldAction());
-				
-			}else if (estilo==Font.ITALIC){
-				
-				elem_menu_emergente.addActionListener(new StyledEditorKit.ItalicAction());
-			}
-			
-		}
-		
-	}
-	
 
 	public void configura_menu(String rotulo, String menu, String tipo_letra) {
 		
@@ -202,9 +183,13 @@ class LaminaProcesador2 extends JPanel{
 			
 			if (estilo==Font.BOLD) {
 				
+				elem_estilo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_DOWN_MASK));
+				
 				elem_estilo.addActionListener(new StyledEditorKit.BoldAction());
 				
 			}else if (estilo==Font.ITALIC){
+				
+				elem_estilo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_K, InputEvent.CTRL_DOWN_MASK));
 				
 				elem_estilo.addActionListener(new StyledEditorKit.ItalicAction());
 			}
@@ -226,5 +211,26 @@ class LaminaProcesador2 extends JPanel{
 		}
 		
 	}//Método tamano
+	
+	public void configura_menu_emergente(String rotulo, String menu_emergente, int estilo, String ruta_icono) {
+		
+		JMenuItem elem_menu_emergente = new JMenuItem(rotulo, new ImageIcon(ruta_icono));
+		
+		if(menu_emergente == "emergente"){
+			
+			this.emergente.add(elem_menu_emergente);
+			
+			if (estilo==Font.BOLD) {
+				
+				elem_menu_emergente.addActionListener(new StyledEditorKit.BoldAction());
+				
+			}else if (estilo==Font.ITALIC){
+				
+				elem_menu_emergente.addActionListener(new StyledEditorKit.ItalicAction());
+			}
+			
+		}
+		
+	}//Método menu emergente
 
 }
