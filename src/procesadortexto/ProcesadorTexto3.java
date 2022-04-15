@@ -3,9 +3,12 @@ package procesadortexto;
 import java.awt.*;
 
 import java.awt.event.*;
+import java.awt.font.TextAttribute;
 
 import javax.swing.*;
 import javax.swing.text.*;
+import javax.swing.text.StyledEditorKit.BoldAction;
+import javax.swing.text.StyledEditorKit.UnderlineAction;
 
 public class ProcesadorTexto3 {
 
@@ -43,6 +46,7 @@ class LaminaProcesador2 extends JPanel{
 	private Font letras;
 	private ButtonGroup tamano_grupo;
 	private JPopupMenu emergente;
+	private JToolBar barraHerramienta;
 	
 	public LaminaProcesador2() {
 		
@@ -65,6 +69,7 @@ class LaminaProcesador2 extends JPanel{
 			/*----------Menu Item de estilos-----------------*/	
 			configura_estilos("Negrita", "estilos", Font.BOLD,  "bin/procesadortexto/negrita.png");
 			configura_estilos("Cursiva", "estilos", Font.ITALIC,"bin/procesadortexto/cursiva.png");
+			configura_estilos("Subrayar", "estilos", TextAttribute.UNDERLINE_ON,"bin/procesadortexto/subrayar.png");
 			
 			/*JCheckBoxMenuItem negrita = new JCheckBoxMenuItem("Negrita", new ImageIcon("bin/procesadortexto/negrita.png"));
 			JCheckBoxMenuItem cursiva = new JCheckBoxMenuItem("Cursiva", new ImageIcon("bin/procesadortexto/cursiva.png"));
@@ -122,7 +127,7 @@ class LaminaProcesador2 extends JPanel{
 		add(miarea, BorderLayout.CENTER);
 		
 		
-		/*Menu emergente*/
+		/*****************Menu emergente*************************************/
 		emergente = new JPopupMenu();
 		
 		configura_menu_emergente("Negrita", "emergente", Font.BOLD, "bin/procesadortexto/negrita.png");
@@ -140,6 +145,31 @@ class LaminaProcesador2 extends JPanel{
 
 		
 		miarea.setComponentPopupMenu(emergente);
+		
+		/**************BARRA DE HERRAMIENTAS*******************/
+		
+		barraHerramienta  = new JToolBar(SwingConstants.VERTICAL);
+		
+		/*JButton negritaBarra = new JButton(new ImageIcon("bin/procesadortexto/negrita.png"));
+		JButton cursivaBarra = new JButton(new ImageIcon("bin/procesadortexto/cursiva.png"));
+		
+		negritaBarra.addActionListener(new StyledEditorKit.BoldAction());
+		cursivaBarra.addActionListener(new StyledEditorKit.ItalicAction());
+		
+		barra.add(negritaBarra);
+		barra.add(cursivaBarra);*/
+		
+		Accion_barra_herramientas AccionNegrita = new Accion_barra_herramientas("Negrita", new ImageIcon("bin/procesadortexto/negrita.png"), "Ctrl N");
+		Accion_barra_herramientas AccionSubrayar = new Accion_barra_herramientas("Subrayar", new ImageIcon("bin/procesadortexto/subrayar.png"), "Ctrl U");
+
+		configura_barra_herramienta("barraHerramienta", "negrita", AccionNegrita);
+		
+		configura_barra_herramienta("barraHerramienta", "cursiva", new Accion_barra_herramientas("Cursiva", new ImageIcon("bin/procesadortexto/cursiva.png"), "Ctrl K"));
+		
+		configura_barra_herramienta("barraHerramienta", "subrayar", AccionSubrayar);
+		
+		add(barraHerramienta, BorderLayout.WEST);
+		
 
 	}
 	
@@ -192,6 +222,12 @@ class LaminaProcesador2 extends JPanel{
 				elem_estilo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_K, InputEvent.CTRL_DOWN_MASK));
 				
 				elem_estilo.addActionListener(new StyledEditorKit.ItalicAction());
+				
+			}else if (estilo==TextAttribute.UNDERLINE_ON){
+				
+				elem_estilo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, InputEvent.CTRL_DOWN_MASK));
+				
+				elem_estilo.addActionListener(new StyledEditorKit.UnderlineAction());
 			}
 			
 		}
@@ -232,5 +268,61 @@ class LaminaProcesador2 extends JPanel{
 		}
 		
 	}//Método menu emergente
+	
+	public void configura_barra_herramienta(String menu, String tipo_boton, Accion_barra_herramientas Accion) {
+		
+		JButton elem_btn = new JButton(Accion);
+		
+		if (menu.equals("barraHerramienta")) {
+			
+			barraHerramienta.add(elem_btn);
+			
+			if(tipo_boton.equals("negrita")) {
+				
+				elem_btn.addActionListener(new StyledEditorKit.BoldAction());
+				
+			}else if (tipo_boton.equals("cursiva")) {
+				
+				elem_btn.addActionListener(new StyledEditorKit.ItalicAction());
+				
+			}else if (tipo_boton.equals("subrayar")) {
+				
+				elem_btn.addActionListener(new StyledEditorKit.UnderlineAction());
+			}
+			
+			
+		}
+		
+	}//Metodo para crear botones de la barra de herramienta
+	
+	private class Accion_barra_herramientas extends AbstractAction{
+		
+		private String boton;
+		
+		public Accion_barra_herramientas(String nombre_btn, Icon icono, String combinacion) {
+			
+			boton = nombre_btn;
+			
+			//putValue(Action.NAME, nombre_btn);
+			
+			putValue(Action.SMALL_ICON, icono);
+			
+			putValue(Action.SHORT_DESCRIPTION, "Da la propiedad al texto de: " + nombre_btn + " " + combinacion);
+			
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+			if(boton.equals("Negrita")) {
+
+				System.out.println("btn negrita");
+			}
+			
+			
+		}
+		
+	}//Accion para el botones de barra de herramienta
 
 }
