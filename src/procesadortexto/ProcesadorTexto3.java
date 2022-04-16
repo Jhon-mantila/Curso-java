@@ -159,15 +159,42 @@ class LaminaProcesador2 extends JPanel{
 		barra.add(negritaBarra);
 		barra.add(cursivaBarra);*/
 		
+		/*JButton azulBarra = new JButton(new ImageIcon("bin/procesadortexto/Amarillo.png"));
+		
+		barraHerramienta.add(azulBarra);*/
+		
+		
+		
 		Accion_barra_herramientas AccionNegrita = new Accion_barra_herramientas("Negrita", new ImageIcon("bin/procesadortexto/negrita.png"), "Ctrl N");
 		Accion_barra_herramientas AccionSubrayar = new Accion_barra_herramientas("Subrayar", new ImageIcon("bin/procesadortexto/subrayar.png"), "Ctrl U");
-
+		Accion_barra_herramientas AccionIzquierda = new Accion_barra_herramientas("Alineación Izquierda", new ImageIcon("bin/procesadortexto/alinearIzquierda.png"), "");
+		Accion_barra_herramientas AccionCentrado = new Accion_barra_herramientas("Alineación Centrado", new ImageIcon("bin/procesadortexto/centrado.png"), "");
+		Accion_barra_herramientas AccionDerecha = new Accion_barra_herramientas("Alineación Derecha", new ImageIcon("bin/procesadortexto/alinearDerecha.png"), "");
+		Accion_barra_herramientas AccionJustificado = new Accion_barra_herramientas("Alineación Justificado", new ImageIcon("bin/procesadortexto/justificar.png"), "");
+		Accion_barra_herramientas AccionAmarillo = new Accion_barra_herramientas("Color Amarillo", new ImageIcon("bin/procesadortexto/Amarillo.png"), "");
+		Accion_barra_herramientas AccionAzul = new Accion_barra_herramientas("Color Azul", new ImageIcon("bin/procesadortexto/azul.png"), "");
+		Accion_barra_herramientas AccionRojo = new Accion_barra_herramientas("Color Rojo", new ImageIcon("bin/procesadortexto/rojo.png"), "");
+		Accion_barra_herramientas AccionNegro = new Accion_barra_herramientas("Color Negro", new ImageIcon("bin/procesadortexto/negro.png"), "");
+		
 		configura_barra_herramienta("barraHerramienta", "negrita", AccionNegrita);
-		
 		configura_barra_herramienta("barraHerramienta", "cursiva", new Accion_barra_herramientas("Cursiva", new ImageIcon("bin/procesadortexto/cursiva.png"), "Ctrl K"));
-		
 		configura_barra_herramienta("barraHerramienta", "subrayar", AccionSubrayar);
 		
+		barraHerramienta.addSeparator();
+		
+		configura_barra_herramienta("barraHerramienta", "izquierda", AccionIzquierda);
+		configura_barra_herramienta("barraHerramienta", "centrado", AccionCentrado);
+		configura_barra_herramienta("barraHerramienta", "derecha", AccionDerecha);
+		configura_barra_herramienta("barraHerramienta", "justificado", AccionJustificado);
+		
+		barraHerramienta.addSeparator();
+		
+		configura_barra_herramienta("barraHerramienta", "amarillo", AccionAmarillo);
+		configura_barra_herramienta("barraHerramienta", "azul", AccionAzul);
+		configura_barra_herramienta("barraHerramienta", "rojo", AccionRojo);
+		configura_barra_herramienta("barraHerramienta", "negro", AccionNegro);
+		
+	
 		add(barraHerramienta, BorderLayout.WEST);
 		
 
@@ -288,7 +315,40 @@ class LaminaProcesador2 extends JPanel{
 			}else if (tipo_boton.equals("subrayar")) {
 				
 				elem_btn.addActionListener(new StyledEditorKit.UnderlineAction());
+				
+			}else if (tipo_boton.equals("amarillo")) {
+				
+				elem_btn.addActionListener(new StyledEditorKit.ForegroundAction("Poner Amarillo", Color.YELLOW));
+				
+			}else if (tipo_boton.equals("azul")) {
+				
+				elem_btn.addActionListener(new StyledEditorKit.ForegroundAction("Poner Azul", Color.BLUE));
+				
+			}else if (tipo_boton.equals("rojo")) {
+				
+				elem_btn.addActionListener(new StyledEditorKit.ForegroundAction("Poner Rojo", Color.RED));
+				
+			}else if (tipo_boton.equals("negro")) {
+				
+				elem_btn.addActionListener(new StyledEditorKit.ForegroundAction("Poner Negro", Color.BLACK));
+				
+			}else if (tipo_boton.equals("izquierda")) {
+				
+				elem_btn.addActionListener(new StyledEditorKit.AlignmentAction("Izquierda", 0));
+				
+			}else if (tipo_boton.equals("centrado")) {
+				
+				elem_btn.addActionListener(new StyledEditorKit.AlignmentAction("centrado", 1));
+				
+			}else if (tipo_boton.equals("derecha")) {
+				
+				elem_btn.addActionListener(new StyledEditorKit.AlignmentAction("derecha", 2));
+				
+			}else if (tipo_boton.equals("justificado")) {
+				
+				elem_btn.addActionListener(new StyledEditorKit.AlignmentAction("justificado", 3));
 			}
+			
 			
 			
 		}
