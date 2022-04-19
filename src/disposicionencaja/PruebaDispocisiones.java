@@ -43,8 +43,7 @@ class MarcoCaja extends JFrame{
 			
 			cajaH1.add(texto1);
 			 
-			LaminaConFiguras milamina = new LaminaConFiguras();
-			
+	
 			
 			cajaH1.setBackground(Color.blue);
 		
@@ -82,22 +81,11 @@ class MarcoCaja extends JFrame{
 		cajaVertical.add(cajaH3);
 		
 
-		add(milamina, BorderLayout.CENTER);
-		add(cajaVertical,BorderLayout.NORTH);
+		
+		add(cajaVertical,BorderLayout.CENTER);
 	}
 	
 
 	
 }
 
-class LaminaConFiguras extends JPanel{
-	
-	public void paintComponent(Graphics g) {
-		
-		super.paintComponent(g);
-		
-		g.drawRect(10,10, 50,50);
-		
-
-	}
-}
