@@ -48,12 +48,14 @@ class Lamina_muelle extends JPanel{
 		add(btn2);
 		add(btn3);
 		
-		Spring mimuelle = Spring.constant(0,10,100);
+		Spring mimuelle = Spring.constant(0,0,100);
+		
+		Spring  muelle_rigido =  Spring.constant(80);
 		
 		//this hace referencia a la lamina por que estamos en la lamina
 		milayout.putConstraint(SpringLayout.WEST, btn1, mimuelle, SpringLayout.WEST, this);
 		
-		milayout.putConstraint(SpringLayout.WEST, btn2, mimuelle, SpringLayout.EAST, btn1);
+		milayout.putConstraint(SpringLayout.WEST, btn2, muelle_rigido, SpringLayout.EAST, btn1);
 		
 		milayout.putConstraint(SpringLayout.WEST, btn3, mimuelle, SpringLayout.EAST, btn2);
 		
