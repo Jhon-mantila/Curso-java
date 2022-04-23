@@ -50,6 +50,10 @@ class Lamina_libre2 extends JPanel{
 		
 		JTextField c_ape = new JTextField(10);
 		
+		JLabel edad = new JLabel("Edad: ");
+		
+		JTextField c_edad = new JTextField(10);
+		
 		JButton miboton = new JButton("Mi Boton");
 		
 		JButton miboton2 = new JButton("Mi Boton 2");
@@ -69,6 +73,9 @@ class Lamina_libre2 extends JPanel{
 		add(apellido);
 		add(c_ape);
 		
+		add(edad);
+		add(c_edad);
+		
 		add(miboton);
 		add(miboton2);
 	
@@ -79,7 +86,7 @@ class Lamina_libre2 extends JPanel{
 
 class EnColumnas implements LayoutManager{
 	
-	private int x = 20;
+	private int x;
 	
 	private int y = 20;
 
@@ -93,23 +100,28 @@ class EnColumnas implements LayoutManager{
 	public void layoutContainer(Container micontenedor) {
 		// TODO Auto-generated method stub
 		
+		int d = micontenedor.getWidth();
+		
+		x = d/2;
+		
 		int contador = 0;
 		
 		int n = micontenedor.getComponentCount();
 		
 		for (int i = 0 ; i < n ; i++) {
 			
+
 			contador++;
 			
 			Component c = micontenedor.getComponent(i);
 			
-			c.setBounds(x, y, 100, 20);
+			c.setBounds(x-100, y, 100, 20);
 			
 			x+=100;
 			
 			if(contador%2 == 0) {
 				
-				x=20;
+				x = d/2;
 				y+=40;
 			}
 			
