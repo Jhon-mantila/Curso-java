@@ -26,7 +26,7 @@ class MarcoCaja extends JFrame{
 		
 		setTitle("marco en caja");
 		
-		setBounds(600,350,200,200);
+		setBounds(600,350,400,400);
 		
 		
 		JLabel rotulo1 = new JLabel("Nombre");
@@ -39,7 +39,7 @@ class MarcoCaja extends JFrame{
 			
 			cajaH1.add(rotulo1);
 			
-			cajaH1.add(Box.createHorizontalStrut(10));
+			//cajaH1.add(Box.createHorizontalStrut(10));
 			
 			cajaH1.add(texto1);
 			 
