@@ -7,6 +7,7 @@ import javax.swing.*;
 
 class Lamina_dialogos extends JPanel{
 
+	private ButtonGroup grupo;
 	
 	public Lamina_dialogos(String titulo, String[] opciones) {
 		
@@ -14,11 +15,13 @@ class Lamina_dialogos extends JPanel{
 				
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
-		ButtonGroup grupo = new ButtonGroup();
+		grupo = new ButtonGroup();
 		
 		for (int i = 0; i<opciones.length; i++) {
 			
 			JRadioButton boton_radio = new JRadioButton(opciones[i]);
+			
+			boton_radio.setActionCommand(opciones[i]);
 			
 			add(boton_radio);
 			
@@ -28,6 +31,18 @@ class Lamina_dialogos extends JPanel{
 		}
 	
 		
+	}
+	
+	public String get_seleccion_boton() {
+		
+		//Acordarme siempre del polimorfismo
+		ButtonModel miboton = grupo.getSelection();
+		
+		String texto_boton = miboton.getActionCommand();
+					
+		return texto_boton;
+		
+		//return grupo.getSelection().getActionCommand();
 	}
 	
 

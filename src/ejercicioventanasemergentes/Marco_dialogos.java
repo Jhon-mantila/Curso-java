@@ -1,15 +1,16 @@
 package ejercicioventanasemergentes;
 
 import java.awt.*;
+import java.awt.event.*;
 
 import javax.swing.*;
 
 
 class Marco_dialogos extends JFrame{
 	
-	private Lamina_dialogos lamina, lamina_tipo_mensaje, lamina_mensaje, lamina_tipo_opcion, lamina_opcion, lamina_entrada;
+	private Lamina_dialogos lamina_tipo, lamina_tipo_mensaje, lamina_mensaje, lamina_tipo_opcion, lamina_opcion, lamina_entrada;
 	
-	
+	private JButton boton_mostrar;
 	public Marco_dialogos() {
 		
 		setTitle("Prueba Diálogos");
@@ -24,7 +25,7 @@ class Marco_dialogos extends JFrame{
 		
 		String[] primeraCaja= {"Mensaje", "Confirmar", "Opciones", "Entrada"};
 						
-		lamina = new Lamina_dialogos("Tipo", primeraCaja);
+		lamina_tipo = new Lamina_dialogos("Tipo", primeraCaja);
 		
 		lamina_tipo_mensaje = new Lamina_dialogos("Tipo Mensaje", new String[] {
 				"ERROR_MESSAGE", 
@@ -54,7 +55,7 @@ class Marco_dialogos extends JFrame{
 				"Combo de Texto",
 				"Combo"});
 		
-		lamina_cuadricula.add(lamina);
+		lamina_cuadricula.add(lamina_tipo);
 		lamina_cuadricula.add(lamina_tipo_mensaje);
 		lamina_cuadricula.add(lamina_mensaje);
 		lamina_cuadricula.add(lamina_tipo_opcion);
@@ -65,12 +66,24 @@ class Marco_dialogos extends JFrame{
 		
 		JPanel lamina_mostrar = new JPanel();
 		
-		JButton boton_mostrar = new JButton("Mostar");
+		boton_mostrar = new JButton("Mostar");
+		
+		boton_mostrar.addActionListener(new AccionMostrar());
 		
 		lamina_mostrar.add(boton_mostrar);
 		
 		add(lamina_cuadricula, BorderLayout.CENTER);
 		
 		add(lamina_mostrar, BorderLayout.SOUTH);
+	}
+	
+	private class AccionMostrar implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			System.out.println("Mostrar el Boton: " + lamina_tipo_mensaje.get_seleccion_boton());
+		}
+		
 	}
 }
