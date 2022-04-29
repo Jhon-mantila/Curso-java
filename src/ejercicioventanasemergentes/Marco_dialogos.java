@@ -108,29 +108,30 @@ class Marco_dialogos extends JFrame{
 			
 			return null;
 		}
-		
-		
-		
+	
 	}
 	
-	//---------Devuelve tipo del mensaje icono del lado-------------------
+	//---------Devuelve tipo del mensaje icono del lado y tambien numero de botones en confirmar-------------------
 	
-	public int get_tipo_mensaje() {
+	public int get_tipo_mensaje(Lamina_dialogos lamina) {
 		
-		if(lamina_tipo_mensaje.get_seleccion_boton().equals("ERROR_MESSAGE")) {
-			return JOptionPane.ERROR_MESSAGE; // o 0
-		}else if(lamina_tipo_mensaje.get_seleccion_boton().equals("INFORMATION_MESSAGE")) {
-			return JOptionPane.INFORMATION_MESSAGE;// o 1
-		}else if(lamina_tipo_mensaje.get_seleccion_boton().equals("WARNING_MESSAGE")) {
-			return JOptionPane.WARNING_MESSAGE; // o 2
-		}else if(lamina_tipo_mensaje.get_seleccion_boton().equals("QUESTION_MESSAGE")) {
-			return JOptionPane.QUESTION_MESSAGE; //o 3
-		}else if(lamina_tipo_mensaje.get_seleccion_boton().equals("PLAIN_MESSAGE")) {
+		String laminaSe = lamina.get_seleccion_boton();
+		
+		if(laminaSe.equals("ERROR_MESSAGE") || laminaSe.equals("YES_NO_OPTION")) {
+			return 0; //JOptionPane.ERROR_MESSAGE; // o 0
+		}else if(laminaSe.equals("INFORMATION_MESSAGE") || laminaSe.equals("YES_NO_CANCEL_OPTION")) {
+			return 1; //JOptionPane.INFORMATION_MESSAGE;// o 1
+		}else if(laminaSe.equals("WARNING_MESSAGE") || laminaSe.equals("OK_CANCEL_OPTION")) {
+			return 2; //JOptionPane.WARNING_MESSAGE; // o 2
+		}else if(laminaSe.equals("QUESTION_MESSAGE")) {
+			return 3; //JOptionPane.QUESTION_MESSAGE; //o 3
+		}else if(laminaSe.equals("PLAIN_MESSAGE") || laminaSe.equals("DEFAULT_OPTION")) {
 			return JOptionPane.PLAIN_MESSAGE; // o-1
 		}else {
 			return -2;
 		}
 	}
+	
 	
 	
 	private class AccionMostrar implements ActionListener{
@@ -142,19 +143,19 @@ class Marco_dialogos extends JFrame{
 			
 			if(lamina_tipo.get_seleccion_boton().equals("Mensaje")) {
 				
-				JOptionPane.showMessageDialog(Marco_dialogos.this, get_mensaje(), "Título", get_tipo_mensaje());
+				JOptionPane.showMessageDialog(Marco_dialogos.this, get_mensaje(), "Título", get_tipo_mensaje(lamina_tipo_mensaje));
 				
 			}else if(lamina_tipo.get_seleccion_boton().equals("Confirmar")) {
 				
-				JOptionPane.showConfirmDialog(Marco_dialogos.this, get_mensaje(), "Título", get_tipo_mensaje(), 0);
+				JOptionPane.showConfirmDialog(Marco_dialogos.this, get_mensaje(), "Título", get_tipo_mensaje(lamina_tipo_opcion), get_tipo_mensaje(lamina_tipo_mensaje));
 				
 			}else if(lamina_tipo.get_seleccion_boton().equals("Opciones")) {
 				
-				JOptionPane.showInputDialog(Marco_dialogos.this, get_mensaje(), "Título", get_tipo_mensaje());
+				JOptionPane.showInputDialog(Marco_dialogos.this, get_mensaje(), "Título", get_tipo_mensaje(lamina_tipo_mensaje));
 				
 			}else if(lamina_tipo.get_seleccion_boton().equals("Entrada")) {
 				
-				JOptionPane.showOptionDialog(Marco_dialogos.this, get_mensaje(), "Título", get_tipo_mensaje(), 0, null, null, null);
+				JOptionPane.showOptionDialog(Marco_dialogos.this, get_mensaje(), "Título", 0, get_tipo_mensaje(lamina_tipo_mensaje), null, null, null);
 			}
 			
 		}
