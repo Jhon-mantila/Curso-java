@@ -52,7 +52,7 @@ class LaminaImagenes extends JPanel{
 	
 	public LaminaImagenes() {
 		
-		
+		// excepcion comprabada
 		
 		//intertar
 		try {
@@ -74,7 +74,8 @@ class LaminaImagenes extends JPanel{
 		
 		Graphics2D g2 = (Graphics2D) g;
 		
-		// run time excepecion una no compobada no se esta obligado a crear un bloque try cath
+		// runtimeExcepecion una NO comprobada no se esta obligado a crear un bloque try cath
+		//las expceciones no comprobadas para practica
 		if (imagen == null) {
 			
 			g.setFont(new Font("Arial", Font.BOLD, 20));
