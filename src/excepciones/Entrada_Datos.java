@@ -19,7 +19,15 @@ public class Entrada_Datos {
 	
 		if(opcion == 1) {
 			
-			pedirDatos();
+			try {
+				
+				pedirDatos();
+				
+			}catch(InputMismatchException e) {
+				
+				System.out.println("Que ingresaste en la edad");
+			}
+			
 			
 		}else if(opcion == 2) {
 			
@@ -35,7 +43,7 @@ public class Entrada_Datos {
 	
 	static void pedirDatos() throws InputMismatchException {
 		
-		try {
+		//try {
 				
 		Scanner entrada = new Scanner(System.in);
 		
@@ -53,10 +61,10 @@ public class Entrada_Datos {
 		
 		entrada.close();
 		
-		}catch(InputMismatchException e) {
+		//}catch(InputMismatchException e) {
 			
-			System.out.println("Que ingresaste en la edad");
-		}
+			
+		//}
 		
 		System.out.println("hemos terminado el programa");
 	}
