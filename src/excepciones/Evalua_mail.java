@@ -13,18 +13,24 @@ public class Evalua_mail {
 		System.out.println(mail.length());
 		
 		try {
+			examina_mail(mail);
+		} catch (LongitudMailErronea e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/*try {
 			
 			examina_mail(mail);	
 			
-		}catch(EOFException e) {
+		}catch(LongitudMailErronea e) {
 			
 			System.out.println("El mail no es correcto");
-		}
+		}*/
 		
 
 	}
 	
-	static void examina_mail(String mail) throws EOFException{
+	static void examina_mail(String mail) throws LongitudMailErronea{
 		
 		int arroba = 0;
 		
@@ -36,7 +42,7 @@ public class Evalua_mail {
 			
 			//throw mi_excepcion;
 			// cuando se indica se usa throw en el metodo se le debe indicar al método ek throws
-			throw new EOFException();
+			throw new LongitudMailErronea("tiene solo 3 caracteres o menos");
 		
 		}else {
 					
@@ -69,4 +75,17 @@ public class Evalua_mail {
 		}//método
 	
 	}
+}
+
+//Clase de expcecion propia
+class LongitudMailErronea extends Exception{
+	
+	public LongitudMailErronea() {}
+	
+	public LongitudMailErronea(String mensaje_error) {
+		
+		super(mensaje_error);
+		
+	}
+	
 }
