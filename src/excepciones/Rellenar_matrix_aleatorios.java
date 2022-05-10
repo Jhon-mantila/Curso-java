@@ -3,7 +3,12 @@ package excepciones;
 import javax.swing.JOptionPane;
 
 public class Rellenar_matrix_aleatorios {
-
+/*
+ * puntos de interrución se le puede colocar condicionales en la pestaña 
+ * de breakpoints y selecionamos condicinal o expressiones para saber una 
+ * posición en concreto
+ * */
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
