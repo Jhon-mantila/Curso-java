@@ -24,7 +24,7 @@ class Leer_fichero {
 			
 			entrada = new FileReader("src/ficheros/fichero.txt");
 			
-			int c = entrada.read();
+			int c = 0;
 			
 			while (c!=-1) {
 				
@@ -34,6 +34,8 @@ class Leer_fichero {
 				System.out.print(letra);
 			}
 			
+			//las entradas de los ficheros siempre se le debe cerrar el flujo
+			entrada.close();
 
 		}  catch (IOException e) {
 			// TODO Auto-generated catch block
