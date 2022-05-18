@@ -33,7 +33,7 @@ public class Serializando {
 			
 			Empleado[] personal_recupeado = (Empleado[])recuperando_fichero.readObject();
 			
-			personal_recupeado.clone();
+			recuperando_fichero.close();
 			
 			for(Empleado e : personal_recupeado) {
 				
@@ -49,12 +49,20 @@ public class Serializando {
 }
 
 class Empleado implements Serializable{
-	
+	/**
+	 * para las actualizaciones, hacer los los cambios sin necesidad de enviar una actualización
+	 * a otros que tenga nuestra aplicación.
+	 * debe manterner la misma version que se genera  = 1L
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String nombre;
 	
 	private double sueldo;
 	
 	private Date fecha_contrado;
+	
+	
 	
 	public Empleado(String n, double s, int agno, int mes, int dia) {
 		
@@ -93,6 +101,10 @@ class Empleado implements Serializable{
 
 class Administrador extends Empleado{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private double incentivo;
 	
 	public Administrador(String n, double s, int agno, int mes, int dia) {
