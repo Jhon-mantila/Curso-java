@@ -7,7 +7,7 @@ public class Acceso_ficheros {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		File ruta = new File("C:/Users/Casa/Desktop/Compartir");
+		File ruta = new File("C:"+File.separator +"Users"+File.separator+"Casa"+File.separator+"Desktop"+File.separator+"Compartir");
 		
 		System.out.println(ruta.getAbsolutePath());
 		
