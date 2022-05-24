@@ -51,8 +51,15 @@ public class Uso_empleado {
 			
 			System.out.println(e.dameDatos());
 		}
-		
+		System.out.println("********************METODO ITERADOR******************************");
 		System.out.println("##################################################################");
+		//Interfaz iterador y polimorfismo
+		Iterator<Empleado> mi_iterador = lista_empleados.iterator();
+		
+		while(mi_iterador.hasNext()) {
+			
+			System.out.println(mi_iterador.next().dameDatos());
+		}
 		
 		//Obtiene la posición del array
 		System.out.println(lista_empleados.get(0).dameDatos());
