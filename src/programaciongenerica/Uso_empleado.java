@@ -36,18 +36,50 @@ public class Uso_empleado {
 		lista_empleados.add(new Empleado("Jhon", 35, 2000000));
 		lista_empleados.add(new Empleado("Jessika", 32, 2000000));
 		lista_empleados.add(new Empleado("Daniela", 12, 4000000));
+		//agrega en esa posicion
+		//lista_empleados.add(0, new Empleado("Olga", 12, 4000000));
+		//Cambia setea la posicion
+		lista_empleados.set(0, new Empleado("Olga", 12, 4000000));
 		
 		//Libera recurssos
 		lista_empleados.trimToSize();
 		
 		System.out.println(lista_empleados.size());
-			
-		
+		System.out.println("********************BUCLE MEJORADO******************************");	
+		//objeto elemento: array
 		for(Empleado e: lista_empleados) {
 			
 			System.out.println(e.dameDatos());
 		}
-			 
+		
+		System.out.println("##################################################################");
+		
+		//Obtiene la posición del array
+		System.out.println(lista_empleados.get(0).dameDatos());
+		
+		System.out.println("#################################################################");
+		System.out.println("************RECOCRRER CON BUCLE CONVENCIONAL********************");
+		System.out.println("#################################################################");
+		for(int i = 0; i < lista_empleados.size(); i++ ) {
+			
+			/*Empleado e= lista_empleados.get(i);
+			
+			System.out.println(e.dameDatos());*/
+			
+			System.out.println(lista_empleados.get(i).dameDatos());
+		}
+		
+		System.out.println("****************************************************************");
+		System.out.println("********RECOCRRER CON BUCLE CONVECIONAL CREANDO UN ARRAY********");
+		System.out.println("#################################################################");
+		Empleado arrayEmpleados[] = new Empleado[lista_empleados.size()];
+		
+		
+		lista_empleados.toArray(arrayEmpleados);
+		
+		for(int i = 0; i < arrayEmpleados.length ; i++) {
+			System.out.println(arrayEmpleados[i].dameDatos());
+		}
 	}
 
 }
