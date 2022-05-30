@@ -17,6 +17,14 @@ public class Pareja<T> {
 		
 		return primero;
 	}
+	//si quiero q este metodo: me traiga tambien los que herenden de empleados tengo
+	//que usar un comodin 
+	public static void imprimier_trabajador(Pareja<? extends Empleados1> p) {
+		
+		Empleados1 primero = p.get_primero();
+		
+		System.out.println(primero);
+	}
 	
 	private T primero;
 
