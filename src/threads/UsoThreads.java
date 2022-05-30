@@ -36,22 +36,31 @@ class Pelota_Hilos implements Runnable {
 //2.  Escribir el código de la tarea dentro del método run	
 	public void run() {
 		
-		for (int i=1; i<=3000; i++){
-			
-
+		System.out.println("Estado del hilo al comenzar " + Thread.currentThread().isInterrupted());
+		//for (int i=1; i<=3000; i++){
+			//while(!Thread.interrupted()) {
+		
+		while(!Thread.currentThread().isInterrupted()) {
 			pelota.mueve_pelota(componente.getBounds());
 			
 			componente.paint(componente.getGraphics());
 			
-			try {
+			/*try {
+				
 				Thread.sleep(4);
+				
 			} catch (InterruptedException e) {
+				
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
+				//e.printStackTrace();
+				System.out.println("Hilo bloqueado imposible si interrupción");
+				//System.exit(0);
+			}*/	
 			
 			
 		}
+		
+		System.out.println("Estado del hilo al comenzar " + Thread.currentThread().isInterrupted());
 		
 	}
 	
@@ -193,6 +202,17 @@ class MarcoRebote extends JFrame{
 			
 		});
 		
+		//Dibuja boton a interrupir
+		ponerBoton(laminaBotones, "Detener", new ActionListener(){
+			
+			public void actionPerformed(ActionEvent evento){
+				
+				detener();
+				
+			}
+			
+		});
+		
 		add(laminaBotones, BorderLayout.SOUTH);
 	}
 	
@@ -224,13 +244,23 @@ class MarcoRebote extends JFrame{
 			
 	//4. crear instancia de la clase thread pasando como parámetro al constructor de thread el objeto runable anterior
 			
-			Thread t = new Thread(r);
+			t = new Thread(r);
 			
 	//5. poner en marcha elhilo de ejecución con el método start() de la clase thread
 			
 			t.start();
 		
 	}
+	
+	
+	public void detener() {
+		//método obsoleto		
+		//t.stop();
+		t.interrupt();
+	
+	}
+	
+	private Thread t;
 	
 	private LaminaPelota lamina;
 	
