@@ -45,7 +45,7 @@ class Pelota_Hilos implements Runnable {
 			
 			componente.paint(componente.getGraphics());
 			
-			/*try {
+			try {
 				
 				Thread.sleep(4);
 				
@@ -53,9 +53,10 @@ class Pelota_Hilos implements Runnable {
 				
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
-				System.out.println("Hilo bloqueado imposible si interrupción");
+				//System.out.println("Hilo bloqueado imposible si interrupción");
 				//System.exit(0);
-			}*/	
+				Thread.currentThread().interrupt();
+			}
 			
 			
 		}
@@ -172,7 +173,7 @@ class MarcoRebote extends JFrame{
 	
 	public MarcoRebote(){
 		
-		setBounds(600,300,400,350);
+		setBounds(600,300,600,350);
 		
 		setTitle ("Rebotes");
 		
@@ -182,7 +183,99 @@ class MarcoRebote extends JFrame{
 		
 		JPanel laminaBotones=new JPanel();
 		
-		ponerBoton(laminaBotones, "Dale!", new ActionListener(){
+
+		//Button #1
+		arranca1 = new JButton("Hilo1");
+		
+		arranca1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent evento) {
+				// TODO Auto-generated method stub
+				comienza_el_juego(evento);
+			}
+			
+		});
+		
+		laminaBotones.add(arranca1);
+		
+		//Button #2
+		arranca2 = new JButton("Hilo2");
+		
+		arranca2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				comienza_el_juego(e);
+			}
+			
+		});
+		
+		laminaBotones.add(arranca2);
+		
+		//Button #3
+		arranca3 = new JButton("Hilo3");
+		
+		arranca3.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				comienza_el_juego(e);
+			}
+			
+		});
+		
+		laminaBotones.add(arranca3);
+		
+		//Button Detener #1
+		detener1 = new JButton("Detener1");
+		
+		detener1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				detener(e);
+			}
+			
+		});
+		
+		laminaBotones.add(detener1);
+		
+		
+		//Button Detener #2
+		detener2 = new JButton("Detener2");
+		
+		detener2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				detener(e);
+			}
+			
+		});
+		
+		laminaBotones.add(detener2);
+		
+		//Button Detener #3
+		detener3= new JButton("Detener3");
+		
+		detener3.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				detener(e);
+			}
+			
+		});
+		
+		laminaBotones.add(detener3);
+		
+		/*ponerBoton(laminaBotones, "Dale!", new ActionListener(){
 			
 			public void actionPerformed(ActionEvent evento){
 				
@@ -211,7 +304,7 @@ class MarcoRebote extends JFrame{
 				
 			}
 			
-		});
+		});*/
 		
 		add(laminaBotones, BorderLayout.SOUTH);
 	}
@@ -219,7 +312,7 @@ class MarcoRebote extends JFrame{
 	
 	//Ponemos botones
 	
-	public void ponerBoton(Container c, String titulo, ActionListener oyente){
+	/*public void ponerBoton(Container c, String titulo, ActionListener oyente){
 		
 		JButton boton=new JButton(titulo);
 		
@@ -227,11 +320,11 @@ class MarcoRebote extends JFrame{
 		
 		boton.addActionListener(oyente);
 		
-	}
+	}*/
 	
 	//Añade pelota y la bota 1000 veces
 	
-	public void comienza_el_juego (){
+	public void comienza_el_juego(ActionEvent e){
 		
 					
 			Pelota pelota=new Pelota();
@@ -241,6 +334,12 @@ class MarcoRebote extends JFrame{
 	//3. instanciar la clase creada y almacenar la instancia en varible de tipo runable
 			
 			Runnable r = new Pelota_Hilos(pelota, lamina);
+
+			System.out.println("Evento: " + e.getSource());
+			
+			Object botonPulsado = e.getSource();
+			
+			if (botonPulsado == arranca1) {
 			
 	//4. crear instancia de la clase thread pasando como parámetro al constructor de thread el objeto runable anterior
 			
@@ -249,20 +348,49 @@ class MarcoRebote extends JFrame{
 	//5. poner en marcha elhilo de ejecución con el método start() de la clase thread
 			
 			t.start();
-		
+			
+			}else if(botonPulsado == arranca2) {
+				
+				t1 = new Thread(r);
+				
+				t1.start();
+				
+			}else if(botonPulsado == arranca3) {
+				
+				t2 = new Thread(r);
+				
+				t2.start();
+				
+			}
 	}
 	
 	
-	public void detener() {
+	public void detener(ActionEvent e) {
 		//método obsoleto		
 		//t.stop();
-		t.interrupt();
+		
+		Object botonPulsado = e.getSource();
+		
+		if (botonPulsado == detener1) {
+			t.interrupt();
+		}else if(botonPulsado == detener2) {
+			t1.interrupt();
+		}else if(botonPulsado == detener3) {
+			t2.interrupt();
+		}
+		
 	
 	}
 	
-	private Thread t;
+	private Thread t,t1,t2;
 	
 	private LaminaPelota lamina;
+	
+	private JButton arranca1, arranca2, arranca3;
+	
+	private JButton detener1, detener2, detener3;
+	
+	
 	
 	
 }
