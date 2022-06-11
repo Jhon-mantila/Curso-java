@@ -2,16 +2,16 @@ package threads;
 
 import java.util.concurrent.locks.*;
 
-public class BancoSinSincronizar {
+public class BancoSinSincronizar2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Banco b = new Banco();
+		Banco2 b = new Banco2();
 		
 		for(int i=0; i<100; i++) {
 			
-			Ejecucion_transferencia ejecucion = new Ejecucion_transferencia( b, i, 2000);
+			Ejecucion_transferencia2 ejecucion = new Ejecucion_transferencia2( b, i, 2000);
 			
 			Thread t = new Thread(ejecucion);
 			
@@ -24,9 +24,9 @@ public class BancoSinSincronizar {
 
 }
 
-class Banco {
+class Banco2 {
 	
-	public Banco() {
+	public Banco2() {
 		
 		cuentas = new double[100];
 		
@@ -36,30 +36,22 @@ class Banco {
 			
 		}
 		
-		saldoSuficiente = cierrebanco.newCondition();
+		//saldoSuficiente = cierrebanco.newCondition();
 	}
 	
-	public  void  transferencia(int cuentaOrigen, int cuentaDestino, double cantidad) throws InterruptedException {
+	public synchronized void  transferencia(int cuentaOrigen, int cuentaDestino, double cantidad) throws InterruptedException {
 		
 		//bloqueo el codigo para que entren en fila los hilos
-		cierrebanco.lock();
+		//cierrebanco.lock();
 		
-		try {
-			//evalúa que el saldo no sea inferior a la cantidad				
-		/*if(cuentas[cuentaOrigen] < cantidad) { 
-			
-			System.out.println("-----CANTIADAD INSUFICIENTE:----"+ cuentaOrigen + "--SALDO:--" + cuentas[cuentaOrigen] + "--CANTIDAD---" + cantidad);
-			
-			return;
-			
-		}else {
-			System.out.println("***CANTIDAD OK:***" + cuentaOrigen);
-		}*/
+	
+
 			
 		while (cuentas[cuentaOrigen] < cantidad) {
 			System.out.println("-----CANTIADAD INSUFICIENTE:----"+ cuentaOrigen + "--SALDO:--" + cuentas[cuentaOrigen] + "--CANTIDAD---" + cantidad);
 			//Pone el hilo a la espera, con un bloqueo
-				saldoSuficiente.await();
+				///saldoSuficiente.await();
+			wait();
 		}
 		
 		//imprimir en pantalla el hilo q va a realizar la transferencia
@@ -74,13 +66,10 @@ class Banco {
 		
 		System.out.printf(" Saldo total: %10.2f %n ", getSaldoTotal());
 		
-		saldoSuficiente.signalAll();
+		//saldoSuficiente.signalAll();
+		notifyAll();
 		
-		//Ejecute si o no ocurra una excepción
-		}finally {
-			//desploquea el codigo para que entre el hilo
-			cierrebanco.unlock();
-		}
+		
 		
 	}
 	
@@ -101,15 +90,11 @@ class Banco {
 	
 	private final double[] cuentas;
 	
-	//bloqueo el codigo para que entren en fila los hilos
-	private Lock cierrebanco = new ReentrantLock();
-	
-	private Condition saldoSuficiente;
 }
 
-class Ejecucion_transferencia implements Runnable{
+class Ejecucion_transferencia2 implements Runnable{
 		
-	public Ejecucion_transferencia(Banco b, int cuenta_delaque_parte, double max) {
+	public Ejecucion_transferencia2(Banco2 b, int cuenta_delaque_parte, double max) {
 		
 		banco = b ;
 		
@@ -142,7 +127,7 @@ class Ejecucion_transferencia implements Runnable{
 		
 	}
 	
-	private Banco banco;
+	private Banco2 banco;
 	
 	private int cuenta_origen;
 	
