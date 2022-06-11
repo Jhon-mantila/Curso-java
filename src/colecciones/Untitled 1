@@ -1,0 +1,17 @@
+Colecciones ventajas sobre arrays
+
+*Pueden cambiar de tamaños dinamicamente
+*pueden ir provistas de ordenamientos
+*se pueden insertar y eliminar elementos
+
+nota: no pueden almacenar datos primitivos
+Tipos de Coleciones
+
+Collection
+interfaces
+set -> SortedSet : almacena elementos no repetidos y no ordenados la interfaz set
+List : almacenar, pueden estar repetidos y estan indezados con valores numericos(sustito natural del array), pueden acceder a diferentes elementos  
+Queue : colas no permite a elementos aleatorios
+
+Map->SortedMap : permite crear elementos repetidos por claves unicas albitrarias
+como los array asociativos en php
