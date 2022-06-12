@@ -11,6 +11,9 @@ public class Cuentas_usuarios {
 		Cliente cliente2 = new Cliente("Daniela", "00002", 6500250);
 		Cliente cliente3 = new Cliente("Jessika", "00003", 100000);
 		Cliente cliente4 = new Cliente("Maria Ruiz", "00004", 200000);
+		Cliente cliente5 = new Cliente("Maria Ruiz", "00004", 200000);
+		
+		
 		
 		Set<Cliente> coleccionCuentas = new HashSet<Cliente>();
 		
@@ -18,6 +21,7 @@ public class Cuentas_usuarios {
 		coleccionCuentas.add(cliente2);
 		coleccionCuentas.add(cliente3);
 		coleccionCuentas.add(cliente4);
+		coleccionCuentas.add(cliente5);
 		
 		for (Cliente cliente : coleccionCuentas) {
 			System.out.println("Nombre: " + cliente.getNombre() + " Cuenta: " + cliente.getNumero_cuenta() +  " Saldo: " + cliente.getSaldo());
