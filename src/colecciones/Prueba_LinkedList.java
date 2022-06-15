@@ -20,7 +20,7 @@ public class Prueba_LinkedList {
 		
 		//listaLinked.add(2, "Yosira");
 		ListIterator<String> it_personas = listaLinked.listIterator();
-		
+		//Apartir de aca el iterador se encarga de moverse en la lista y agregar
 		it_personas.next();
 		it_personas.add("Yosira");
 		for(String personas: listaLinked) {
