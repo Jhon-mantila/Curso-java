@@ -41,7 +41,7 @@ public class Cliente {
 	}
 
 
-	@Override
+@Override
 	public int hashCode() {
 		return Objects.hash(numero_cuenta);
 	}

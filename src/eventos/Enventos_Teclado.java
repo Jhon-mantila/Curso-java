@@ -26,9 +26,8 @@ class MarcoTeclado extends JFrame{
 		
 		setBounds(500,100,500,500);
 		
-		EventoTeclado tecla = new EventoTeclado();
-		
-		addKeyListener(tecla);
+		EventoTeclado teclas  = new EventoTeclado();
+		addKeyListener(teclas);
 		
 		setVisible(true);
 	}
@@ -44,7 +43,7 @@ class EventoTeclado implements KeyListener{
 		//trae el Codigo de la techa
 		int codigo = e.getKeyCode();
 		
-		System.out.println(codigo);
+		//System.out.println(codigo);
 		
 		char letra = e.getKeyChar();
 		
@@ -52,20 +51,20 @@ class EventoTeclado implements KeyListener{
 		
 		String letracompleta = e.getKeyText(codigo);
 		
-		System.out.println(letracompleta);
+		//System.out.println(letracompleta);
 		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("alzo la techa");
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("ssss");
 	}
 	
 }
