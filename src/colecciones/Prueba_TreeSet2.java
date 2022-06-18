@@ -38,6 +38,20 @@ public class Prueba_TreeSet2 {
 			System.out.println(a.get_descripcion());
 		}
 		
+		ComparadorArticulos compara_articulos = new ComparadorArticulos();
+		
+		TreeSet<Articulo2> ordenaAlfabeticamente = new TreeSet<Articulo2>(compara_articulos);
+		
+		ordenaAlfabeticamente.add(art_1);
+		ordenaAlfabeticamente.add(art_3);
+		ordenaAlfabeticamente.add(art_2);
+		System.out.println("-------Ordena Alfabeticamente----------");
+		for(Articulo2 a: ordenaAlfabeticamente) {
+			
+			System.out.println(a.get_descripcion());
+		}
+		
+		
 	}
 
 }
@@ -67,6 +81,21 @@ class Articulo2 implements Comparable<Articulo2>{
 	public String get_descripcion() {
 		
 		return descripcion;
+	}
+	
+}
+
+
+class ComparadorArticulos implements Comparator<Articulo2>{
+
+	@Override
+	public int compare(Articulo2 o1, Articulo2 o2) {
+		// TODO Auto-generated method stub
+		String desc1 = o1.get_descripcion();
+		
+		String desc2 = o2.get_descripcion();
+		
+		return desc1.compareTo(desc2);
 	}
 	
 }
