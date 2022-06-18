@@ -45,7 +45,9 @@ public class Prueba_TreeSet2 {
 		ordenaAlfabeticamente.add(art_1);
 		ordenaAlfabeticamente.add(art_3);
 		ordenaAlfabeticamente.add(art_2);
+		
 		System.out.println("-------Ordena Alfabeticamente----------");
+		
 		for(Articulo2 a: ordenaAlfabeticamente) {
 			
 			System.out.println(a.get_descripcion());
