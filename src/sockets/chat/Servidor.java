@@ -1,4 +1,4 @@
-package sockets;
+package sockets.chat;
 
 import javax.swing.*;
 import java.awt.*;
@@ -50,23 +50,41 @@ class MarcoServidor extends JFrame implements Runnable{
 		try {
 			ServerSocket servidor = new ServerSocket(9998);
 			
+			String nick, ip, mensaje;
+			
+			PaqueteEnvio paquete_recibido;
+			
 			while(true) {
 				
 			
 			Socket misocket = servidor.accept();
 			
-			DataInputStream flujo_entrada = new DataInputStream(misocket.getInputStream());
+			
+			ObjectInputStream paquetes_datos = new ObjectInputStream(misocket.getInputStream());
+						
+			paquete_recibido = (PaqueteEnvio) paquetes_datos.readObject();
+			
+			nick = paquete_recibido.getNick();
+			
+			ip = paquete_recibido.getIp();
+			
+			mensaje = paquete_recibido.getMensaje();
+			
+			miarea.append("\nNick: " + nick + ": " + mensaje + " para: " + ip);
+			
+			misocket.close();
+			/*DataInputStream flujo_entrada = new DataInputStream(misocket.getInputStream());
 			
 			String mensaje_texto =  flujo_entrada.readUTF();
 			
 			miarea.append("\n" + mensaje_texto);
 			
-			flujo_entrada.close();
+			flujo_entrada.close();**/
 			
 
 			}
 			
-		} catch (IOException e) {
+		} catch (IOException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
