@@ -56,10 +56,9 @@ class MarcoServidor extends JFrame implements Runnable{
 			
 			while(true) {
 				
-			
+			//recibe el servidor
 			Socket misocket = servidor.accept();
-			
-			
+						
 			ObjectInputStream paquetes_datos = new ObjectInputStream(misocket.getInputStream());
 						
 			paquete_recibido = (PaqueteEnvio) paquetes_datos.readObject();
@@ -71,6 +70,17 @@ class MarcoServidor extends JFrame implements Runnable{
 			mensaje = paquete_recibido.getMensaje();
 			
 			miarea.append("\nNick: " + nick + ": " + mensaje + " para: " + ip);
+			
+			//comunicación con el otro cliente
+			Socket enviaDestinatario = new Socket(ip, 9090);
+			
+			ObjectOutputStream paqueteReenvio= new ObjectOutputStream(enviaDestinatario.getOutputStream());
+			
+			paqueteReenvio.writeObject(paquete_recibido);
+			
+			paqueteReenvio.close();
+			
+			enviaDestinatario.close();
 			
 			misocket.close();
 			/*DataInputStream flujo_entrada = new DataInputStream(misocket.getInputStream());

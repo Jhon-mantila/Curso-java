@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.*;
@@ -37,7 +38,7 @@ class MarcoCliente extends JFrame{
 	}
 }
 
-class LaminaMarcoCliente extends JPanel{
+class LaminaMarcoCliente extends JPanel implements Runnable{
 	
 	private JLabel texto;
 	
@@ -67,6 +68,10 @@ class LaminaMarcoCliente extends JPanel{
 		
 		add(campo);
 		add(enviar);
+		
+		Thread mihilo = new Thread(this);
+		
+		mihilo.start();
 	}
 	
 	private class EnviaTexto implements ActionListener{
@@ -92,6 +97,8 @@ class LaminaMarcoCliente extends JPanel{
 				ObjectOutputStream paquete_datos = new ObjectOutputStream(misocket.getOutputStream());
 				
 				paquete_datos.writeObject(paquete);
+				
+				
 						
 				misocket.close();
 				
@@ -114,6 +121,40 @@ class LaminaMarcoCliente extends JPanel{
 			
 		}
 		
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		try {
+			
+			ServerSocket servidor_cliente = new ServerSocket(9090);
+			
+			Socket cliente;
+			
+			String ip, mensaje, nick;
+			
+			PaqueteEnvio paquete_recibido;
+			
+			while(true) {
+				
+				cliente = servidor_cliente.accept();
+			
+				ObjectInputStream flujo_entrada = new ObjectInputStream(cliente.getInputStream());
+				
+				paquete_recibido = (PaqueteEnvio) flujo_entrada.readObject();
+				
+				nick = paquete_recibido.getNick();
+				ip = paquete_recibido.getIp();
+				mensaje= paquete_recibido.getMensaje();
+				
+				miarea.append(nick + " : " + mensaje);
+				
+			}
+			
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }
 
