@@ -35,6 +35,32 @@ class MarcoCliente extends JFrame{
 		
 		setVisible(true);
 		
+		addWindowListener(new EnvioOnline());
+		
+	}
+}
+
+//-----------------------------Envio de señal online--------------------
+class EnvioOnline extends WindowAdapter{
+	
+	public void windowOpened(WindowEvent e) {
+		try {
+			
+			Socket misocket = new Socket("192.168.1.5", 9998);
+			
+			PaqueteEnvio datos = new PaqueteEnvio();
+			
+			datos.setMensaje(" online");
+			
+			ObjectOutputStream paquete_datos = new ObjectOutputStream(misocket.getOutputStream());
+			
+			paquete_datos.writeObject(datos);
+			
+			misocket.close();
+			
+		}catch(Exception ex) {
+			
+		}
 	}
 }
 

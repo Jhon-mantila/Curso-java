@@ -58,6 +58,15 @@ class MarcoServidor extends JFrame implements Runnable{
 				
 			//recibe el servidor
 			Socket misocket = servidor.accept();
+			
+			//--------Dectecta dirección ip online-------------
+			InetAddress localizacion = misocket.getInetAddress();
+			
+			String ipRemota = localizacion.getHostAddress();
+			
+			System.out.println(ipRemota);
+			
+			//-------------------------------------------------
 						
 			ObjectInputStream paquetes_datos = new ObjectInputStream(misocket.getInputStream());
 						
